@@ -14,6 +14,8 @@ public class ShakeManager : MonoBehaviour
 
     public float moveSpeed = 2f;              // Speed at which rollToDirection moves around (unused but kept)
 
+    [SerializeField][Range(1, 10)] private int sensitivity = 10;
+
     [Header("Debug")]
     public float shakeIntensity;              // Current calculated shake intensity
 
@@ -63,8 +65,11 @@ public class ShakeManager : MonoBehaviour
         // Raw shake intensity from movement and rotation
         float rawIntensity = velocity.magnitude + angularVelocity * 0.01f;
 
-        // Apply minimum threshold
-        shakeIntensity = rawIntensity >= minShakeThreshold ? rawIntensity : 0f;
+        // Adjust threshold based on sensitivity (higher sensitivity = lower threshold)
+        float adjustedThreshold = minShakeThreshold * (11 - sensitivity) / 10f;
+
+        // Apply shake only if intensity exceeds the adjusted threshold
+        shakeIntensity = rawIntensity >= adjustedThreshold ? rawIntensity : 0f;
     }
 
     void RollDice()
