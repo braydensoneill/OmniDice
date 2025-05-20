@@ -3,44 +3,50 @@ using UnityEngine;
 public class ShakeManager : MonoBehaviour
 {
     [Header("External References")]
-    public Rigidbody dice;               // Rigidbody of the dice
-    public Transform rollToDirection;    // Target direction to apply force toward
+    public Transform rollToDirection;
 
     [Header("Settings")]
-    public float forceMultiplier = 100f;      // Scale the applied force
-    public float minShakeThreshold = 5f;      // Minimum intensity to trigger force
-
-    public float rotationIntensity = 0.05f;   // How off-center the force is applied (affects rotation)
-
-    public float moveSpeed = 2f;              // Speed at which rollToDirection moves around (unused but kept)
-
+    public float forceMultiplier = 100f;
+    public float minShakeThreshold = 5f;
+    public float rotationIntensity = 0.05f;
+    public float moveSpeed = 2f;
     [SerializeField][Range(1, 10)] private int sensitivity = 10;
 
+    [Header("Shake Limits")]
+    [SerializeField][Range(1f, 100f)] private float maxShakeIntensity = 20f;
+
     [Header("Debug")]
-    public float shakeIntensity;              // Current calculated shake intensity
+    public float shakeIntensity;
 
     private Vector3 lastPosition;
     private Quaternion lastRotation;
 
-    // Timer for controlling how often rollToDirection moves
     private float moveTimer = 0f;
-    private float moveInterval = 0.5f;  // seconds
+    private float moveInterval = 0.5f;
+
+    private DiceManager[] diceArray;
 
     void Start()
     {
         lastPosition = transform.position;
         lastRotation = transform.rotation;
+
+        GameObject diceFolder = GameObject.Find("Dice");
+        if (diceFolder != null)
+        {
+            diceArray = diceFolder.GetComponentsInChildren<DiceManager>();
+        }
+        else
+        {
+            Debug.LogWarning("No 'Dice' folder found at the root of the hierarchy.");
+            diceArray = new DiceManager[0];
+        }
     }
 
     void FixedUpdate()
     {
-
         MoveRollDirection();
-
-        // Calculate shake intensity
         FindShakeIntensity();
-
-        // Roll the dice towards rollToDirection if shake intensity is above threshold
         RollDice();
     }
 
@@ -54,42 +60,39 @@ public class ShakeManager : MonoBehaviour
 
     void FindShakeIntensity()
     {
-        // Calculate linear velocity
         Vector3 velocity = (transform.position - lastPosition) / Time.fixedDeltaTime;
 
-        // Calculate angular velocity magnitude
         Quaternion deltaRotation = transform.rotation * Quaternion.Inverse(lastRotation);
         deltaRotation.ToAngleAxis(out float angleInDegrees, out _);
         float angularVelocity = angleInDegrees / Time.fixedDeltaTime;
 
-        // Raw shake intensity from movement and rotation
         float rawIntensity = velocity.magnitude + angularVelocity * 0.01f;
-
-        // Adjust threshold based on sensitivity (higher sensitivity = lower threshold)
         float adjustedThreshold = minShakeThreshold * (11 - sensitivity) / 10f;
-
-        // Apply shake only if intensity exceeds the adjusted threshold
-        shakeIntensity = rawIntensity >= adjustedThreshold ? rawIntensity : 0f;
+        float clampedIntensity = Mathf.Min(rawIntensity, maxShakeIntensity);
+        shakeIntensity = clampedIntensity >= adjustedThreshold ? clampedIntensity : 0f;
     }
 
     void RollDice()
     {
-        if (shakeIntensity > 0f && dice != null && rollToDirection != null)
+        if (shakeIntensity > 0f && diceArray != null && rollToDirection != null)
         {
-            Vector3 forceDir = (rollToDirection.position - dice.position).normalized;
+            foreach (var dice in diceArray)
+            {
+                if (dice == null) continue;
 
-            // Apply force at a small offset to add rotation, scaled by rotationIntensity
-            Vector3 randomOffset = new Vector3(
-                Random.Range(-rotationIntensity, rotationIntensity),
-                Random.Range(-rotationIntensity, rotationIntensity),
-                Random.Range(-rotationIntensity, rotationIntensity)
-            );
-            Vector3 forcePoint = dice.position + randomOffset;
+                Vector3 forceDir = (rollToDirection.position - dice.transform.position).normalized;
 
-            dice.AddForceAtPosition(forceDir * shakeIntensity * forceMultiplier, forcePoint, ForceMode.Force);
+                Vector3 randomOffset = new Vector3(
+                    Random.Range(-rotationIntensity, rotationIntensity),
+                    Random.Range(-rotationIntensity, rotationIntensity),
+                    Random.Range(-rotationIntensity, rotationIntensity)
+                );
+                Vector3 forcePoint = dice.transform.position + randomOffset;
+
+                dice.ApplyRollForce(forceDir * shakeIntensity * forceMultiplier, forcePoint);
+            }
         }
 
-        // Store current position and rotation for next frame's calculation
         lastPosition = transform.position;
         lastRotation = transform.rotation;
     }

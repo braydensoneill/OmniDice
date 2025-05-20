@@ -15,7 +15,6 @@ public class MaxSpeedLimiter : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Clamp the velocity if it exceeds the max speed
         if (rb.linearVelocity.magnitude > maxSpeed)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
