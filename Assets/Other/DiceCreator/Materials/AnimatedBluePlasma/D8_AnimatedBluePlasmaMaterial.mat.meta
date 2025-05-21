@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: cdea21f72f1ee4244a4ca489d82abead
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/AnimatedBluePlasma/D8_AnimatedBluePlasmaMaterial.mat
+  uploadId: 289439

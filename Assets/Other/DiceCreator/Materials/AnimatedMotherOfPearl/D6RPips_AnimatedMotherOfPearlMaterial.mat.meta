@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 097a90ba0fdf22d45bd6e3cba633dae4
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/AnimatedMotherOfPearl/D6RPips_AnimatedMotherOfPearlMaterial.mat
+  uploadId: 289439

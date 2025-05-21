@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 6a7e2ccd1b16ad44998487e39f925bc7
+timeCreated: 1545500715
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/SideUtility/DieSideAwareTextDie.cs
+  uploadId: 289439

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 23acb8083af13bd47b200e75ffe805e1
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/WoodDark/D6RPips_WoodDarkMaterial.mat
+  uploadId: 289439

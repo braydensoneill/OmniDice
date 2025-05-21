@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: WoodLight
+  m_EditorClassIdentifier: 
+  description: Wood Light
+  materials:
+  - {fileID: 2100000, guid: 2b73b926a61a96147885f56945804553, type: 2}
+  - {fileID: 2100000, guid: 3a88201d096419341ac2f4fbb8af58ec, type: 2}
+  - {fileID: 2100000, guid: 4cdd03bcd10ec2049bdc4d765432742c, type: 2}
+  - {fileID: 2100000, guid: d09e4fe102d98e645afdbf4b73f342fd, type: 2}
+  - {fileID: 2100000, guid: 911ca8defc549e843885274491b286b3, type: 2}
+  - {fileID: 2100000, guid: 3ecd296d3eaf7e34eb0238792fbd6a88, type: 2}
+  - {fileID: 2100000, guid: 71e6a630bb1243f41a22a2a679bfdc32, type: 2}
+  - {fileID: 2100000, guid: 95b397e3b08e5ab449e039ee82bed2f2, type: 2}
+  - {fileID: 2100000, guid: 8c815420298c0564a828fcbcfd268728, type: 2}
+  - {fileID: 2100000, guid: 01b5b0fc755ccc24598d2a04662384e7, type: 2}
+  - {fileID: 2100000, guid: 340b54ab682efe54f9f16cb2a95b88e6, type: 2}
+  - {fileID: 2100000, guid: 30b9dc5ba747247418cb0dceeda520cf, type: 2}

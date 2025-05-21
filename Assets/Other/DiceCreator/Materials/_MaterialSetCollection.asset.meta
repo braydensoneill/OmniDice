@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 54817d44335699f4a864a1cbae808cbd
+timeCreated: 1546619702
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/_MaterialSetCollection.asset
+  uploadId: 289439

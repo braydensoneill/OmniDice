@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: AnimatedMotherOfPearl
+  m_EditorClassIdentifier: 
+  description: Animated Mother Of Pearl
+  materials:
+  - {fileID: 2100000, guid: aaf20657a2218364790a8d4442c2555b, type: 2}
+  - {fileID: 2100000, guid: 32d1dadceb46d8648aac80babeff5cb8, type: 2}
+  - {fileID: 2100000, guid: a37944f6b7c466744969b7b99b76c7ac, type: 2}
+  - {fileID: 2100000, guid: 02665efd72ff9c34b86b1ed5f62d2485, type: 2}
+  - {fileID: 2100000, guid: cba53a4eed4b0274a87b4e27a9352d21, type: 2}
+  - {fileID: 2100000, guid: 097a90ba0fdf22d45bd6e3cba633dae4, type: 2}
+  - {fileID: 2100000, guid: fbf1c1c838ac3a94cb2ab2684665e755, type: 2}
+  - {fileID: 2100000, guid: 3f7e0f2b11a4e634d8327739ee41f9e6, type: 2}
+  - {fileID: 2100000, guid: 3e4f9b96099df38429c2ea1d8614d20e, type: 2}
+  - {fileID: 2100000, guid: 810ac4849de04744b8446fbace9ced8a, type: 2}
+  - {fileID: 2100000, guid: fd8e0557bb1833b439f436949f1a6399, type: 2}
+  - {fileID: 2100000, guid: 728a6b0918637ea41a8a807aa681a810, type: 2}

@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: eec49e48db60b264ba9877b93c04231d
+timeCreated: 1529604357
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/Editor/DieSidesEditor.cs
+  uploadId: 289439

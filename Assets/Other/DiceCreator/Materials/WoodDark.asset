@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: WoodDark
+  m_EditorClassIdentifier: 
+  description: Wood Dark
+  materials:
+  - {fileID: 2100000, guid: 601a4ce40f2bd004db77d41412bf0cdb, type: 2}
+  - {fileID: 2100000, guid: d08f5989cc7ef3f42adab80d329120f2, type: 2}
+  - {fileID: 2100000, guid: f308b97bc682baa459e49f76fdc8d084, type: 2}
+  - {fileID: 2100000, guid: 32acef1063e00a24ab106f675fe13440, type: 2}
+  - {fileID: 2100000, guid: 841b117d2836bcc49a40af35f00d19d8, type: 2}
+  - {fileID: 2100000, guid: 23acb8083af13bd47b200e75ffe805e1, type: 2}
+  - {fileID: 2100000, guid: 4cb115420bd0bb740be8834ada3b5a9c, type: 2}
+  - {fileID: 2100000, guid: 22531a7ef7a43864185d51262aa312a4, type: 2}
+  - {fileID: 2100000, guid: 4ecfc6e46a67db945ae223eb5c3584a0, type: 2}
+  - {fileID: 2100000, guid: 85c7b3a52b0d8774abf9c8e0dd84a1d2, type: 2}
+  - {fileID: 2100000, guid: ffb6525373bb56d4aaf738105f867e8c, type: 2}
+  - {fileID: 2100000, guid: 9a6b520f6dd4df343a5725ed14778a65, type: 2}

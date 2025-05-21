@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: e6b2c581d1358fe488ce5cbfa016d8d0
+timeCreated: 1541944974
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/Editor/NoteEditor.cs
+  uploadId: 289439

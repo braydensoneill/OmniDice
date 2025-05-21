@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ec8c0c40ca8d57248b63d8c15aa37927
+timeCreated: 1536013101
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/WhiteOnBlackMatte/D6_WhiteOnBlackMatteMaterial.mat
+  uploadId: 289439

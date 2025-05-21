@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 3ba668b07ef82c649b6ca4da78fc34d7
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/_BlankChalkStoneYellow/D4_BlankChalkStoneYellowMaterial.mat
+  uploadId: 289439

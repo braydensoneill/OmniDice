@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 48aebf89f1ee0374ba27131beddf9fee
+timeCreated: 1530824767
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 13400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/PhysicsMaterials/DiePhysicsMaterial.physicMaterial
+  uploadId: 289439

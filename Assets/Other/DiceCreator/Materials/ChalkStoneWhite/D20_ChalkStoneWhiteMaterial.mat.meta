@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b698ed3c1b1f79145aa2785807a7d11e
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ChalkStoneWhite/D20_ChalkStoneWhiteMaterial.mat
+  uploadId: 289439

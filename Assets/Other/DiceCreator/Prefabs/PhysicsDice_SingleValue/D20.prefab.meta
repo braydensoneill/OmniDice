@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cdc30ce353e5d1a4c9f3dbb748ea77a1
+timeCreated: 1536406613
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Prefabs/PhysicsDice_SingleValue/D20.prefab
+  uploadId: 289439

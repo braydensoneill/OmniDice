@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e89341b70c6000046adbe86cbab62b57
+timeCreated: 1529614597
+licenseType: Store
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scenes/001_GettingStarted.unity
+  uploadId: 289439

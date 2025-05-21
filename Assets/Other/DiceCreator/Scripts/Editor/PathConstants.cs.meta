@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: a638745813b953a4b9fb16bd1265ae57
+timeCreated: 1532544529
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/Editor/PathConstants.cs
+  uploadId: 289439

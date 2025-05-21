@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 32f2a03de6d469c42978d0c959b79950
+timeCreated: 1547414292
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/_Generic/SingleSidedText.mat
+  uploadId: 289439

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e45abd8b7f18e464da56abb2db866394
+timeCreated: 1531327465
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/_Generic/TableWoodMaterial.mat
+  uploadId: 289439

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: b4298c6f186aeb04cac9372854879af9
+timeCreated: 1533795093
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/DieCollection/DieCollectionResult.cs
+  uploadId: 289439

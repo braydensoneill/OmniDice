@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4b08b5f0d636de44087bb2e18ca2f147
+timeCreated: 1548109737
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/WoodLight.asset
+  uploadId: 289439

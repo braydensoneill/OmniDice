@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7587362e9ee9ddd43ad5a4b71676c17a
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ChromePolishedBlue/D10-X_ChromePolishedBlueMaterial.mat
+  uploadId: 289439

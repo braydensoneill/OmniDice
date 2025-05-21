@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9b0c249d723cead44be3d314a148d84b
+timeCreated: 1545485133
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Prefabs/SideUtilityPrefabExamples/SpritePrefab.prefab
+  uploadId: 289439

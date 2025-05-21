@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 6d2baf39cfca2dc44b8b7c49c0cdcb13
+timeCreated: 1545483211
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/Editor/SideUtility.cs
+  uploadId: 289439

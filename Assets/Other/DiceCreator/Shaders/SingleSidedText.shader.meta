@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a33ff75a54b1f004090d6cbee9d1f2db
+timeCreated: 1547414119
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Shaders/SingleSidedText.shader
+  uploadId: 289439

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 70ad05206292c9846a6ff4a1afe3b819
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ChalkStoneYellow/D6Pips_ChalkStoneYellowMaterial.mat
+  uploadId: 289439

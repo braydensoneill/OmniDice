@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 72f42065fa5ea734096fdf90fb7465dd
+timeCreated: 1546595998
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: -1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/SpeckledBlackGlossWhiteGlyph/D10-0_SpeckledBlackGlossWhiteGlyphMaterial.mat
+  uploadId: 289439

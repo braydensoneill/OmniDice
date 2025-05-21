@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d664a72f0a118e94c939cc597e73138d
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/GoldFringedMarbleBlack/D8_GoldFringedMarbleBlackMaterial.mat
+  uploadId: 289439

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: AnimatedBluePlasma
+  m_EditorClassIdentifier: 
+  description: Animated Blue Plasma
+  materials:
+  - {fileID: 2100000, guid: 769adc6c049e9d44dbee9614194f9829, type: 2}
+  - {fileID: 2100000, guid: 0c36f29832a9c354fb9357eecb097f36, type: 2}
+  - {fileID: 2100000, guid: 1da1d5fdc9061c3479ebdcef583b5504, type: 2}
+  - {fileID: 2100000, guid: 3319f3afdcc30574a9c1fd7de2fc1f14, type: 2}
+  - {fileID: 2100000, guid: 6a416d203c002b14ca18a4e7c08d03ea, type: 2}
+  - {fileID: 2100000, guid: 98867bc43bd0e9f49b8397bc63958dc3, type: 2}
+  - {fileID: 2100000, guid: cdea21f72f1ee4244a4ca489d82abead, type: 2}
+  - {fileID: 2100000, guid: 7d52d1c315c56ce4b8430ba8701cfd3d, type: 2}
+  - {fileID: 2100000, guid: 482834a68a49bc840a24d9910d382273, type: 2}
+  - {fileID: 2100000, guid: 7a4b6a196768b4e448f6ed18c0a2094a, type: 2}
+  - {fileID: 2100000, guid: 3102c8ae62409624f906844302ae2375, type: 2}
+  - {fileID: 2100000, guid: e4ed438281d2d7e40b7642370a344bf2, type: 2}

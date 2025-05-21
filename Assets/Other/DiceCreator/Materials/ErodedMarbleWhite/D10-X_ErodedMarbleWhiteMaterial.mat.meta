@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 127eb4de0f2d4d74ab4610f4c75bafac
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ErodedMarbleWhite/D10-X_ErodedMarbleWhiteMaterial.mat
+  uploadId: 289439

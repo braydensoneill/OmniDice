@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e43ac98bf1ceb9c43b0408b9db9caaae
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ChalkStoneBrown/D10-0_ChalkStoneBrownMaterial.mat
+  uploadId: 289439

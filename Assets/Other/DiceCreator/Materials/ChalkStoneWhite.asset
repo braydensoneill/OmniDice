@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: ChalkStoneWhite
+  m_EditorClassIdentifier: 
+  description: Chalk Stone White
+  materials:
+  - {fileID: 2100000, guid: b674ecfd0b9fd984a995e729a5febd38, type: 2}
+  - {fileID: 2100000, guid: f694afd9fc5ea414491087d0b48f3dbb, type: 2}
+  - {fileID: 2100000, guid: 1cd5f6f909ecd6e418d4730c35eccf87, type: 2}
+  - {fileID: 2100000, guid: 58e6b29054730cf4eba9dfa943277f1f, type: 2}
+  - {fileID: 2100000, guid: aacaec50f1cb9fb4fb6e437fad38d9d1, type: 2}
+  - {fileID: 2100000, guid: ee4e84db4623cc547a9815246d2a3549, type: 2}
+  - {fileID: 2100000, guid: 0fc1ad7e6082e93458656bf1ad72ef64, type: 2}
+  - {fileID: 2100000, guid: 15c745619f571d142aa05522b5e6acb1, type: 2}
+  - {fileID: 2100000, guid: 3a7657c9c9f9d894eaee174d17c3c917, type: 2}
+  - {fileID: 2100000, guid: aac873d255ce1ed449c72c61569abb94, type: 2}
+  - {fileID: 2100000, guid: b5c6c39d74051ad498872dd44cd9db8c, type: 2}
+  - {fileID: 2100000, guid: b698ed3c1b1f79145aa2785807a7d11e, type: 2}

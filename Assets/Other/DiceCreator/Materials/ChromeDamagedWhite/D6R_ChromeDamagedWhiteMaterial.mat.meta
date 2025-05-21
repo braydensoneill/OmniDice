@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b1129b978a1405646be3ad93c02fc435
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ChromeDamagedWhite/D6R_ChromeDamagedWhiteMaterial.mat
+  uploadId: 289439

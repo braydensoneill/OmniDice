@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: PlasticPurple
+  m_EditorClassIdentifier: 
+  description: Plastic Purple
+  materials:
+  - {fileID: 2100000, guid: abdd5c282205e3246a4411eb119e7171, type: 2}
+  - {fileID: 2100000, guid: b2b71d5d9be6df8438bd505cb4079c3a, type: 2}
+  - {fileID: 2100000, guid: 3cc4f8d64909493449c0e3f05a15a739, type: 2}
+  - {fileID: 2100000, guid: 10c6082b35767954aaa29f11a3ebb8a2, type: 2}
+  - {fileID: 2100000, guid: d82ca6a503dd3e345a938b636bb5974c, type: 2}
+  - {fileID: 2100000, guid: 3ec104c3f74ab0b46900636a0ce8f01c, type: 2}
+  - {fileID: 2100000, guid: 442e10c4a94b05344b19a5c30afc7801, type: 2}
+  - {fileID: 2100000, guid: c538c4e5c162d2f4ca00b1e7d2a064ae, type: 2}
+  - {fileID: 2100000, guid: f07b61edb41419341ad048eee0cdab80, type: 2}
+  - {fileID: 2100000, guid: 4a206ffc2879f164abe3e4e561e1a54d, type: 2}
+  - {fileID: 2100000, guid: b48b80e642bccb64dad2bd0840253c54, type: 2}
+  - {fileID: 2100000, guid: 945c4aee38c7d9e4e91e888d468dfb70, type: 2}

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 65dfe471cbfe9f34cb0e1a0d5812ad9f
+timeCreated: 1546514656
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Prefabs/PhysicsDice_SingleValue/D6Pips.prefab
+  uploadId: 289439

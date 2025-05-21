@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 85efd2ea34dfe404c9278dbc27a452bf
+timeCreated: 1546618869
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/Editor/MaterialSetRebuilder.cs
+  uploadId: 289439

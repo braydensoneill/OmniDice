@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 65c371b57fd209d4ea7deb4128eb5868
+timeCreated: 1542144316
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/AdditionalResources/version.txt
+  uploadId: 289439

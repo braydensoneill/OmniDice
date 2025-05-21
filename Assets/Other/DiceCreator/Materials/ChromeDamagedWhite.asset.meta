@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 728a9646e8fdad940a8f19e1c4ab0abe
+timeCreated: 1548109736
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ChromeDamagedWhite.asset
+  uploadId: 289439

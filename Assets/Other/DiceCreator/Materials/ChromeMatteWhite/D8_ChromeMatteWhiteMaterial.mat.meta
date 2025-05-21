@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6f0ee6b72de022341bd4cd4ef61d0c8f
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ChromeMatteWhite/D8_ChromeMatteWhiteMaterial.mat
+  uploadId: 289439

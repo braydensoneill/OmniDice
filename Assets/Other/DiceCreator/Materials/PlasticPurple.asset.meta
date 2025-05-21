@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c2f347434140b9645a8f0b0649718a29
+timeCreated: 1548109737
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/PlasticPurple.asset
+  uploadId: 289439

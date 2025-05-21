@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4c79a7e66ca06ca40a26829125201839
+timeCreated: 1541963159
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Prefabs/DieResultTextField.prefab
+  uploadId: 289439

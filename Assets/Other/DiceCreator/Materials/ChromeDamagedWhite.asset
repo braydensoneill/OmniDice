@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: ChromeDamagedWhite
+  m_EditorClassIdentifier: 
+  description: Chrome Damaged White
+  materials:
+  - {fileID: 2100000, guid: 7ebdbf0c321221542b940d954b258458, type: 2}
+  - {fileID: 2100000, guid: be72ff8586775054584fb54bb0218a4b, type: 2}
+  - {fileID: 2100000, guid: 8813653978eb77f488a59a075946f548, type: 2}
+  - {fileID: 2100000, guid: cdd6122f62337db4f98d76746ab9305d, type: 2}
+  - {fileID: 2100000, guid: b1129b978a1405646be3ad93c02fc435, type: 2}
+  - {fileID: 2100000, guid: 30f5051edf59d39459dcecf808ef75c6, type: 2}
+  - {fileID: 2100000, guid: 4c58837b29e0fc4499bf8e87b0b61193, type: 2}
+  - {fileID: 2100000, guid: 782d462a3295c864e93a7bed69f2240e, type: 2}
+  - {fileID: 2100000, guid: fe55cbfcfd0d3eb40897e9845de81429, type: 2}
+  - {fileID: 2100000, guid: 94085cac17f46ab49b2713d7542bdc1d, type: 2}
+  - {fileID: 2100000, guid: 8af18451976c6f94e9190f84ee41f7d5, type: 2}
+  - {fileID: 2100000, guid: 6d03a38b97613a34a9bfb2071d1bf2c6, type: 2}

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: GoldFringedMarbleBlack
+  m_EditorClassIdentifier: 
+  description: Gold Fringed Marble Black
+  materials:
+  - {fileID: 2100000, guid: 1bd0f8ab2a7cea342af8679750f89e8a, type: 2}
+  - {fileID: 2100000, guid: 77446396e321b2143b3cfbeaeac8d0a2, type: 2}
+  - {fileID: 2100000, guid: 1107ef2b1e80e6b46ba38716be9f33da, type: 2}
+  - {fileID: 2100000, guid: 788b5e463e60d2e488f3ef45b91c0f81, type: 2}
+  - {fileID: 2100000, guid: eb0435a0c6ecbd442b37c2406b04b679, type: 2}
+  - {fileID: 2100000, guid: 63becd08cb6cfb947a800943a3d5b60d, type: 2}
+  - {fileID: 2100000, guid: d664a72f0a118e94c939cc597e73138d, type: 2}
+  - {fileID: 2100000, guid: add2aaef9e5258f4d9803163e22245c2, type: 2}
+  - {fileID: 2100000, guid: e465c3de6ccdec848ab6457186b9330f, type: 2}
+  - {fileID: 2100000, guid: b193156cda3d5e44c93cfae8f6df5765, type: 2}
+  - {fileID: 2100000, guid: 5b7f55f6c7fedca4c9d8248b0ddbceee, type: 2}
+  - {fileID: 2100000, guid: f4d50d1909d33a240a299e95e61ccbe9, type: 2}

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: c54fe1ab3952e964d8fc3b7ce93d8b39
+timeCreated: 1515840197
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/Util/GroundUtility.cs
+  uploadId: 289439

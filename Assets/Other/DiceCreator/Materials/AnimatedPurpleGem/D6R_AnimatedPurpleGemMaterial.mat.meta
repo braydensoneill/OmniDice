@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e0cf919dfa877dc40809e6eb1a3e396a
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/AnimatedPurpleGem/D6R_AnimatedPurpleGemMaterial.mat
+  uploadId: 289439

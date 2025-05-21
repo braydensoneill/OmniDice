@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4c7d52526e55ce346b83f80d8f54375a
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ChalkStoneGreen/D2_ChalkStoneGreenMaterial.mat
+  uploadId: 289439

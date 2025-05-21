@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: ErodedMarbleWhite
+  m_EditorClassIdentifier: 
+  description: Eroded Marble White
+  materials:
+  - {fileID: 2100000, guid: 564891ab1edff514fb072120555805d8, type: 2}
+  - {fileID: 2100000, guid: 2c68062d8cbb59b499efc389c1eeca37, type: 2}
+  - {fileID: 2100000, guid: 4ba3b70f216a2bd45aea482973985bd7, type: 2}
+  - {fileID: 2100000, guid: 08173e5b2b24a484086740b21e49ad6f, type: 2}
+  - {fileID: 2100000, guid: 2baf29ca05d8a4a4c87191ad26f0b55d, type: 2}
+  - {fileID: 2100000, guid: 226e2c208b67e884bbbf5507ea222921, type: 2}
+  - {fileID: 2100000, guid: ce87dcd6bace5d840b6756cb51f4b05c, type: 2}
+  - {fileID: 2100000, guid: e6dfd3f66c279504a859bd681f8b5fa4, type: 2}
+  - {fileID: 2100000, guid: afaa135e6d7c7a3478559200cc353d94, type: 2}
+  - {fileID: 2100000, guid: 127eb4de0f2d4d74ab4610f4c75bafac, type: 2}
+  - {fileID: 2100000, guid: 8323c732e3fbb55469b9b405e79530d5, type: 2}
+  - {fileID: 2100000, guid: 019a0efb4adcbed41b0072f52119e8bf, type: 2}

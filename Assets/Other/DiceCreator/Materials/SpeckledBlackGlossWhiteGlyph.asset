@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: SpeckledBlackGlossWhiteGlyph
+  m_EditorClassIdentifier: 
+  description: Speckled Black Gloss White Glyph
+  materials:
+  - {fileID: 2100000, guid: 1024a7b6cb79f894184b4c72772a5670, type: 2}
+  - {fileID: 2100000, guid: 1ff8c04fc3c3d784598d5256459f3e16, type: 2}
+  - {fileID: 2100000, guid: 2697269091ba6b44aa24d6e7b43a95bb, type: 2}
+  - {fileID: 2100000, guid: 054b7f5cc59dcb54f839238a99f45d42, type: 2}
+  - {fileID: 2100000, guid: f36298a4f1b77d34fa27556fb9c0bf5a, type: 2}
+  - {fileID: 2100000, guid: a8c9d06ab6e67414fba6caed25f3beae, type: 2}
+  - {fileID: 2100000, guid: bc057bc12b4998447ad1a9830975fcd3, type: 2}
+  - {fileID: 2100000, guid: a5db0d0ea63a83c46b49f114c2fc05ff, type: 2}
+  - {fileID: 2100000, guid: 72f42065fa5ea734096fdf90fb7465dd, type: 2}
+  - {fileID: 2100000, guid: 1a84cdbda9cd99847a605c2d008fa2a6, type: 2}
+  - {fileID: 2100000, guid: cec03f55cff78a94499b7a5e7f773cd6, type: 2}
+  - {fileID: 2100000, guid: 7d0af3640c4b9124297f3fde84ebe955, type: 2}

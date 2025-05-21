@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: WhiteOnBlackMatte
+  m_EditorClassIdentifier: 
+  description: White On Black Matte
+  materials:
+  - {fileID: 2100000, guid: 5152f5b3fb5751b4ea435850a13f24ff, type: 2}
+  - {fileID: 2100000, guid: d7c29b5262b09e044b3fac2ee6a673ff, type: 2}
+  - {fileID: 2100000, guid: ec8c0c40ca8d57248b63d8c15aa37927, type: 2}
+  - {fileID: 2100000, guid: 450ba243015b33446912263fa77a6d6c, type: 2}
+  - {fileID: 2100000, guid: 1e74e6ebb6603e246973baf12ddce565, type: 2}
+  - {fileID: 2100000, guid: 781f47351a4f9284cb62b5b86553b579, type: 2}
+  - {fileID: 2100000, guid: d37ca93e2b38f0847be0ff53ae030988, type: 2}
+  - {fileID: 2100000, guid: 866e3e46865f18e46ab43ac5ec6c7c03, type: 2}
+  - {fileID: 2100000, guid: 5c15228786779f243b70bf8312b75cfa, type: 2}
+  - {fileID: 2100000, guid: 46d76d687e8fa5a4dabffe71016c54ad, type: 2}
+  - {fileID: 2100000, guid: 30f8d4d96edefa848b88da9b62d490dc, type: 2}
+  - {fileID: 2100000, guid: a6f823900fa96ff429dd02a6db9a99db, type: 2}

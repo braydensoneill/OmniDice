@@ -1,0 +1,37 @@
+fileFormatVersion: 2
+guid: fe1ab8169d3420b43bc9c40f4067da2d
+timeCreated: 1547664431
+licenseType: Store
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Arial
+  fontNames:
+  - Arial
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: bb42b021277c82742bcf849bf1147097, type: 3}
+  - {fileID: 12800000, guid: 28776de1048cd64498c6daf684cd0df1, type: 3}
+  - {fileID: 12800000, guid: 29f9a662a780cf3498730a49afdb6a88, type: 3}
+  - {fileID: 12800000, guid: 72bc3135cafdd884c9e56ea020bf2167, type: 3}
+  - {fileID: 12800000, guid: 649a237606cfca34e8bf1d63a4f6188a, type: 3}
+  - {fileID: 12800000, guid: c1c8798626007a440b435788f58bd591, type: 3}
+  - {fileID: 12800000, guid: 616f3fcccdda9814db03d5f24d14925e, type: 3}
+  - {fileID: 12800000, guid: 9cc1020e9b8360f41b2a16dc19034ac2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Fonts/ARIAL.TTF
+  uploadId: 289439

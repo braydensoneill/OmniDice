@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fb5c41eb9526d0943857b1e1743d0c68
+timeCreated: 1536406599
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Prefabs/PhysicsDice_SingleValue/D8.prefab
+  uploadId: 289439

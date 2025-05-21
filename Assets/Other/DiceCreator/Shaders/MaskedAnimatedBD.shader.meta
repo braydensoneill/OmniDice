@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6f933415118fed7479f2aacd3efdff69
+timeCreated: 1546597032
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Shaders/MaskedAnimatedBD.shader
+  uploadId: 289439

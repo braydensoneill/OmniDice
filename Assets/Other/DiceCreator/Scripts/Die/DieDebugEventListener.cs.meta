@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: a1c6891de1ace3242b4c836cf9875ca4
+timeCreated: 1531684978
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/Die/DieDebugEventListener.cs
+  uploadId: 289439

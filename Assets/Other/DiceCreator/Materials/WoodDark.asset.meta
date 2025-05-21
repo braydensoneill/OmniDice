@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c67523ab2a72a954c8fed15fc159829f
+timeCreated: 1548109737
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/WoodDark.asset
+  uploadId: 289439

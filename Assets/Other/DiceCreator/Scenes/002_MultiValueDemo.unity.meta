@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 55a01d4899bb4dc41b5f724790892f85
+timeCreated: 1529614597
+licenseType: Store
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scenes/002_MultiValueDemo.unity
+  uploadId: 289439

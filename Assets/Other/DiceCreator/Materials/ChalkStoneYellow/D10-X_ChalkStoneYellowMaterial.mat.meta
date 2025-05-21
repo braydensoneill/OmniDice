@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 49344b04c9edc0e4a9be7ef24ce91da9
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/ChalkStoneYellow/D10-X_ChalkStoneYellowMaterial.mat
+  uploadId: 289439

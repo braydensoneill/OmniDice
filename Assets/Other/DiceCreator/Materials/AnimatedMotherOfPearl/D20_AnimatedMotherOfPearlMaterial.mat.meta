@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 728a6b0918637ea41a8a807aa681a810
+timeCreated: 1529706373
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/AnimatedMotherOfPearl/D20_AnimatedMotherOfPearlMaterial.mat
+  uploadId: 289439

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0da229e621a8144ac823cd114dc77c, type: 3}
+  m_Name: ChalkStoneBrown
+  m_EditorClassIdentifier: 
+  description: Chalk Stone Brown
+  materials:
+  - {fileID: 2100000, guid: 0658c311f083b35489b8959d6c043b35, type: 2}
+  - {fileID: 2100000, guid: 2c067a12ce453bf40a7fff6108dcefe2, type: 2}
+  - {fileID: 2100000, guid: c13e76afcdef742458ddb0c12d455ad6, type: 2}
+  - {fileID: 2100000, guid: 07d1790339ed4454f9b887ac13e8d640, type: 2}
+  - {fileID: 2100000, guid: 8d2e3aa22e45dba47a418c4792128109, type: 2}
+  - {fileID: 2100000, guid: 6c9e34fc8d13d874090f0c14524cb966, type: 2}
+  - {fileID: 2100000, guid: 588a6ccb3d0c8d440bb01ee0d2ab5e7f, type: 2}
+  - {fileID: 2100000, guid: adbc8d7f3031555469520260adf2aa5f, type: 2}
+  - {fileID: 2100000, guid: e43ac98bf1ceb9c43b0408b9db9caaae, type: 2}
+  - {fileID: 2100000, guid: 30ac21a36482a044793284ecfe68be7c, type: 2}
+  - {fileID: 2100000, guid: cee8e1b9555d1af439987c0863b3db47, type: 2}
+  - {fileID: 2100000, guid: 2275238a2ec4e4246b0b8452db7b1167, type: 2}

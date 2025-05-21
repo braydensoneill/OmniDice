@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 537cee9f504d44b429e491c9aec90c85
+timeCreated: 1533739561
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Scripts/Core/DieSideMatchInfo.cs
+  uploadId: 289439

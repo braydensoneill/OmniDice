@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d4cd41f850826d145b762aecc8fd383f
+timeCreated: 1546595997
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: -1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 128640
+  packageName: Dice (Creator) Pack
+  packageVersion: 1.2
+  assetPath: Assets/InnerDriveStudios/DiceCreator/Materials/SpeckledBlackGlossRedGlyph/D6Pips_SpeckledBlackGlossRedGlyphMaterial.mat
+  uploadId: 289439
