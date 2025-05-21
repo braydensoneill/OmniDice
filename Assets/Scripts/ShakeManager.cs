@@ -9,27 +9,20 @@ public class ShakeManager : MonoBehaviour
     public float forceMultiplier = 100f;
     public float minShakeThreshold = 5f;
     public float rotationIntensity = 0.05f;
-    public float moveSpeed = 2f;
     [SerializeField][Range(1, 10)] private int sensitivity = 10;
-
-    [Header("Shake Limits")]
     [SerializeField][Range(1f, 100f)] private float maxShakeIntensity = 20f;
 
     [Header("Debug")]
     public float shakeIntensity;
 
-    private Vector3 lastPosition;
-    private Quaternion lastRotation;
-
-    private float moveTimer = 0f;
-    private float moveInterval = 0.5f;
-
     private DiceManager[] diceArray;
+
+    private Vector3 lastAcceleration;
+    private Vector3 lastAngularVelocity;
 
     void Start()
     {
-        lastPosition = transform.position;
-        lastRotation = transform.rotation;
+        Input.gyro.enabled = true;
 
         GameObject diceFolder = GameObject.Find("Dice");
         if (diceFolder != null)
@@ -41,35 +34,42 @@ public class ShakeManager : MonoBehaviour
             Debug.LogWarning("No 'Dice' folder found at the root of the hierarchy.");
             diceArray = new DiceManager[0];
         }
+
+        lastAcceleration = Input.acceleration;
+        lastAngularVelocity = Vector3.zero;
     }
 
     void FixedUpdate()
     {
-        MoveRollDirection();
         FindShakeIntensity();
         RollDice();
     }
 
-    void MoveRollDirection()
-    {
-        if (rollToDirection == null) return;
-
-        Vector3 currentPos = rollToDirection.position;
-        rollToDirection.position = new Vector3(currentPos.x, currentPos.y, rollToDirection.position.z);
-    }
-
     void FindShakeIntensity()
     {
-        Vector3 velocity = (transform.position - lastPosition) / Time.fixedDeltaTime;
+        // Device acceleration (linear movement)
+        Vector3 currentAcceleration = Input.acceleration;
+        Vector3 deltaAcceleration = currentAcceleration - lastAcceleration;
+        float accelerationMagnitude = deltaAcceleration.magnitude / Time.fixedDeltaTime;
 
-        Quaternion deltaRotation = transform.rotation * Quaternion.Inverse(lastRotation);
-        deltaRotation.ToAngleAxis(out float angleInDegrees, out _);
-        float angularVelocity = angleInDegrees / Time.fixedDeltaTime;
+        // Device angular velocity (rotation speed)
+        Vector3 angularVelocity = Input.gyro.rotationRateUnbiased;
+        float angularMagnitude = angularVelocity.magnitude;
 
-        float rawIntensity = velocity.magnitude + angularVelocity * 0.01f;
+        // Raw shake intensity
+        float rawIntensity = accelerationMagnitude + angularMagnitude;
+
+        // Adjusted threshold
         float adjustedThreshold = minShakeThreshold * (11 - sensitivity) / 10f;
+
+        // Clamp the shake intensity
         float clampedIntensity = Mathf.Min(rawIntensity, maxShakeIntensity);
+
+        // Set shakeIntensity if above threshold
         shakeIntensity = clampedIntensity >= adjustedThreshold ? clampedIntensity : 0f;
+
+        lastAcceleration = currentAcceleration;
+        lastAngularVelocity = angularVelocity;
     }
 
     void RollDice()
@@ -92,8 +92,5 @@ public class ShakeManager : MonoBehaviour
                 dice.ApplyRollForce(forceDir * shakeIntensity * forceMultiplier, forcePoint);
             }
         }
-
-        lastPosition = transform.position;
-        lastRotation = transform.rotation;
     }
 }
