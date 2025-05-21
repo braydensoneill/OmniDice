@@ -27,6 +27,10 @@ public class ShakeManager : MonoBehaviour
     private Quaternion lastRotation;
     private DiceManager[] diceArray;
 
+    // Debug tracking
+    private float adjustedThreshold;
+    private bool appliedForceThisFrame = false;
+
     void Start()
     {
         lastPosition = transform.position;
@@ -65,11 +69,9 @@ public class ShakeManager : MonoBehaviour
     {
         if (!SystemInfo.supportsGyroscope) return;
 
-        // Rotate based on gyro rotation rate
         Vector3 rotationRate = Input.gyro.rotationRateUnbiased * gyroRotationMultiplier;
         transform.Rotate(rotationRate, Space.Self);
 
-        // Move based on accelerometer
         Vector3 acceleration = Input.acceleration;
         transform.position += acceleration * accelMoveMultiplier;
     }
@@ -92,9 +94,8 @@ public class ShakeManager : MonoBehaviour
 
         float rawIntensity = velocity.magnitude + angularVelocity * 0.01f;
 
-        float adjustedThreshold = minShakeThreshold * (11 - sensitivity) / 10f;
         float clampedIntensity = Mathf.Min(rawIntensity, maxShakeIntensity);
-        shakeIntensity = clampedIntensity >= adjustedThreshold ? clampedIntensity : 0f;
+        shakeIntensity = clampedIntensity >= minShakeThreshold ? clampedIntensity : 0f;
 
         lastPosition = transform.position;
         lastRotation = transform.rotation;
@@ -102,28 +103,37 @@ public class ShakeManager : MonoBehaviour
 
     void RollDice()
     {
-        if (shakeIntensity > 0f && diceArray != null && rollToDirection != null)
+        appliedForceThisFrame = false;
+
+        if (shakeIntensity <= 0f || diceArray == null || rollToDirection == null) return;
+
+        appliedForceThisFrame = true;
+
+        foreach (var dice in diceArray)
         {
-            foreach (var dice in diceArray)
-            {
-                if (dice == null) continue;
+            if (dice == null) continue;
 
-                Vector3 forceDir = (rollToDirection.position - dice.transform.position).normalized;
+            Rigidbody rb = dice.GetComponent<Rigidbody>();
+            if (rb == null) continue;
 
-                Vector3 randomOffset = new Vector3(
-                    Random.Range(-rotationIntensity, rotationIntensity),
-                    Random.Range(-rotationIntensity, rotationIntensity),
-                    Random.Range(-rotationIntensity, rotationIntensity)
-                );
-                Vector3 forcePoint = dice.transform.position + randomOffset;
+            Vector3 forceDir = (rollToDirection.position - rb.position).normalized;
 
-                dice.ApplyRollForce(forceDir * shakeIntensity * forceMultiplier, forcePoint);
-            }
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-rotationIntensity, rotationIntensity),
+                Random.Range(-rotationIntensity, rotationIntensity),
+                Random.Range(-rotationIntensity, rotationIntensity)
+            );
+            Vector3 forcePoint = rb.position + randomOffset;
+
+            rb.AddForceAtPosition(forceDir * shakeIntensity * forceMultiplier, forcePoint, ForceMode.Force);
         }
     }
 
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 500, 100), $"Shake: {shakeIntensity:F2}");
+        GUI.Label(new Rect(10, 10, 300, 20), $"Shake Intensity: {shakeIntensity:F2}");
+        GUI.Label(new Rect(10, 30, 300, 20), $"Adjusted Threshold: {adjustedThreshold:F2}");
+        GUI.Label(new Rect(10, 50, 300, 20), $"Sensitivity: {sensitivity}");
+        GUI.Label(new Rect(10, 70, 300, 20), $"Force Applied: {(appliedForceThisFrame ? "Yes" : "No")}");
     }
 }
