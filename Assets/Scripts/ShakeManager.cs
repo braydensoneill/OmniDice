@@ -9,20 +9,33 @@ public class ShakeManager : MonoBehaviour
     public float forceMultiplier = 100f;
     public float minShakeThreshold = 5f;
     public float rotationIntensity = 0.05f;
+    public float moveSpeed = 2f;
     [SerializeField][Range(1, 10)] private int sensitivity = 10;
+
+    [Header("Shake Limits")]
     [SerializeField][Range(1f, 100f)] private float maxShakeIntensity = 20f;
 
     [Header("Debug")]
     public float shakeIntensity;
 
-    private DiceManager[] diceArray;
+    [Header("Phone Input")]
+    [SerializeField] private bool useDeviceMotion = true;
+    [SerializeField] private float gyroRotationMultiplier = 2f;
+    [SerializeField] private float accelMoveMultiplier = 0.1f;
 
-    private Vector3 lastAcceleration;
-    private Vector3 lastAngularVelocity;
+    private Vector3 lastPosition;
+    private Quaternion lastRotation;
+    private DiceManager[] diceArray;
 
     void Start()
     {
-        Input.gyro.enabled = true;
+        lastPosition = transform.position;
+        lastRotation = transform.rotation;
+
+        if (SystemInfo.supportsGyroscope)
+        {
+            Input.gyro.enabled = true;
+        }
 
         GameObject diceFolder = GameObject.Find("Dice");
         if (diceFolder != null)
@@ -34,42 +47,57 @@ public class ShakeManager : MonoBehaviour
             Debug.LogWarning("No 'Dice' folder found at the root of the hierarchy.");
             diceArray = new DiceManager[0];
         }
-
-        lastAcceleration = Input.acceleration;
-        lastAngularVelocity = Vector3.zero;
     }
 
     void FixedUpdate()
     {
+        if (useDeviceMotion)
+        {
+            ApplyPhoneMotionToTransform();
+        }
+
+        MoveRollDirection();
         FindShakeIntensity();
         RollDice();
     }
 
+    void ApplyPhoneMotionToTransform()
+    {
+        if (!SystemInfo.supportsGyroscope) return;
+
+        // Rotate based on gyro rotation rate
+        Vector3 rotationRate = Input.gyro.rotationRateUnbiased * gyroRotationMultiplier;
+        transform.Rotate(rotationRate, Space.Self);
+
+        // Move based on accelerometer
+        Vector3 acceleration = Input.acceleration;
+        transform.position += acceleration * accelMoveMultiplier;
+    }
+
+    void MoveRollDirection()
+    {
+        if (rollToDirection == null) return;
+
+        Vector3 currentPos = rollToDirection.position;
+        rollToDirection.position = new Vector3(currentPos.x, currentPos.y, rollToDirection.position.z);
+    }
+
     void FindShakeIntensity()
     {
-        // Device acceleration (linear movement)
-        Vector3 currentAcceleration = Input.acceleration;
-        Vector3 deltaAcceleration = currentAcceleration - lastAcceleration;
-        float accelerationMagnitude = deltaAcceleration.magnitude / Time.fixedDeltaTime;
+        Vector3 velocity = (transform.position - lastPosition) / Time.fixedDeltaTime;
 
-        // Device angular velocity (rotation speed)
-        Vector3 angularVelocity = Input.gyro.rotationRateUnbiased;
-        float angularMagnitude = angularVelocity.magnitude;
+        Quaternion deltaRotation = transform.rotation * Quaternion.Inverse(lastRotation);
+        deltaRotation.ToAngleAxis(out float angleInDegrees, out _);
+        float angularVelocity = angleInDegrees / Time.fixedDeltaTime;
 
-        // Raw shake intensity
-        float rawIntensity = accelerationMagnitude + angularMagnitude;
+        float rawIntensity = velocity.magnitude + angularVelocity * 0.01f;
 
-        // Adjusted threshold
         float adjustedThreshold = minShakeThreshold * (11 - sensitivity) / 10f;
-
-        // Clamp the shake intensity
         float clampedIntensity = Mathf.Min(rawIntensity, maxShakeIntensity);
-
-        // Set shakeIntensity if above threshold
         shakeIntensity = clampedIntensity >= adjustedThreshold ? clampedIntensity : 0f;
 
-        lastAcceleration = currentAcceleration;
-        lastAngularVelocity = angularVelocity;
+        lastPosition = transform.position;
+        lastRotation = transform.rotation;
     }
 
     void RollDice()
@@ -92,5 +120,10 @@ public class ShakeManager : MonoBehaviour
                 dice.ApplyRollForce(forceDir * shakeIntensity * forceMultiplier, forcePoint);
             }
         }
+    }
+
+    void OnGUI()
+    {
+        GUI.Label(new Rect(10, 10, 500, 100), $"Shake: {shakeIntensity:F2}");
     }
 }
