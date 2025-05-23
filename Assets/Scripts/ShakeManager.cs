@@ -10,7 +10,7 @@ public class ShakeManager : MonoBehaviour
     public float minShakeThreshold = 1.2f; // Not used now, replaced by GetActivationThreshold
     public float rotationIntensity = 0.05f;
     public float moveSpeed = 2f;
-    [SerializeField][Range(1, 10)] private int sensitivity = 7;
+    [SerializeField][Range(1, 10)] private int sensitivity = 1;
 
     [Header("Shake Limits")]
     [SerializeField][Range(1f, 100f)] private float maxShakeIntensity = 20f;
@@ -133,11 +133,13 @@ public class ShakeManager : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 300, 20), $"Shake Intensity: {shakeIntensity:F2}");
-        GUI.Label(new Rect(10, 30, 300, 20), $"Activation Threshold: {GetActivationThreshold():F2}");
-        GUI.Label(new Rect(10, 50, 300, 20), $"Sensitivity: {sensitivity}");
-        GUI.Label(new Rect(10, 70, 300, 20), $"Force Applied: {(appliedForceThisFrame ? "Yes" : "No")}");
-        GUI.Label(new Rect(10, 100, 300, 20), $"Gyro: {debugGyroRate}");
-        GUI.Label(new Rect(10, 120, 300, 20), $"Accel: {debugAcceleration}");
+        GUI.skin.label.fontSize = 24;  // Set font size to 24 (2x default)
+
+        GUI.Label(new Rect(10, 10, 400, 30), $"Shake Intensity: {shakeIntensity:F2}");
+        GUI.Label(new Rect(10, 40, 400, 30), $"Activation Threshold: {GetActivationThreshold():F2}");
+        GUI.Label(new Rect(10, 70, 400, 30), $"Sensitivity: {sensitivity}");
+        GUI.Label(new Rect(10, 100, 400, 30), $"Force Applied: {(appliedForceThisFrame ? "Yes" : "No")}");
+        GUI.Label(new Rect(10, 140, 400, 30), $"Gyro: {debugGyroRate}");
+        GUI.Label(new Rect(10, 170, 400, 30), $"Accel: {debugAcceleration}");
     }
 }
