@@ -7,35 +7,34 @@ public class ShakeManager : MonoBehaviour
 
     [Header("Settings")]
     public float forceMultiplier = 100f;
-    public float minShakeThreshold = 5f;
+    public float minShakeThreshold = 1.2f;
     public float rotationIntensity = 0.05f;
     public float moveSpeed = 2f;
-    [SerializeField][Range(1, 10)] private int sensitivity = 10;
+    [SerializeField][Range(1, 10)] private int sensitivity = 7;
 
     [Header("Shake Limits")]
     [SerializeField][Range(1f, 100f)] private float maxShakeIntensity = 20f;
 
-    [Header("Debug")]
-    public float shakeIntensity;
-
     [Header("Phone Input")]
     [SerializeField] private bool useDeviceMotion = true;
-    [SerializeField] private float gyroRotationMultiplier = 2f;
-    [SerializeField] private float accelMoveMultiplier = 0.1f;
+    [SerializeField] private float gyroRotationMultiplier = 3.0f;
+    [SerializeField] private float accelMoveMultiplier = 0.3f;
+    [SerializeField] private float gyroDeadzone = 0.15f;
+    [SerializeField] private float accelDeadzone = 0.15f;
 
-    private Vector3 lastPosition;
-    private Quaternion lastRotation;
-    private DiceManager[] diceArray;
-
-    // Debug tracking
+    [Header("Debug")]
+    public float shakeIntensity;
     private float adjustedThreshold;
     private bool appliedForceThisFrame = false;
 
+    private DiceManager[] diceArray;
+
+    // Debug values
+    private Vector3 debugGyroRate;
+    private Vector3 debugAcceleration;
+
     void Start()
     {
-        lastPosition = transform.position;
-        lastRotation = transform.rotation;
-
         if (SystemInfo.supportsGyroscope)
         {
             Input.gyro.enabled = true;
@@ -57,7 +56,7 @@ public class ShakeManager : MonoBehaviour
     {
         if (useDeviceMotion)
         {
-            ApplyPhoneMotionToTransform();
+            ReadPhoneMotion();
         }
 
         MoveRollDirection();
@@ -65,15 +64,10 @@ public class ShakeManager : MonoBehaviour
         RollDice();
     }
 
-    void ApplyPhoneMotionToTransform()
+    void ReadPhoneMotion()
     {
-        if (!SystemInfo.supportsGyroscope) return;
-
-        Vector3 rotationRate = Input.gyro.rotationRateUnbiased * gyroRotationMultiplier;
-        transform.Rotate(rotationRate, Space.Self);
-
-        Vector3 acceleration = Input.acceleration;
-        transform.position += acceleration * accelMoveMultiplier;
+        debugGyroRate = Input.gyro.rotationRate;
+        debugAcceleration = Input.acceleration;
     }
 
     void MoveRollDirection()
@@ -86,19 +80,18 @@ public class ShakeManager : MonoBehaviour
 
     void FindShakeIntensity()
     {
-        Vector3 velocity = (transform.position - lastPosition) / Time.fixedDeltaTime;
+        float linear = debugAcceleration.magnitude;
+        float angular = debugGyroRate.magnitude;
 
-        Quaternion deltaRotation = transform.rotation * Quaternion.Inverse(lastRotation);
-        deltaRotation.ToAngleAxis(out float angleInDegrees, out _);
-        float angularVelocity = angleInDegrees / Time.fixedDeltaTime;
+        if (linear < accelDeadzone) linear = 0f;
+        if (angular < gyroDeadzone) angular = 0f;
 
-        float rawIntensity = velocity.magnitude + angularVelocity * 0.01f;
+        float rawIntensity = (linear * accelMoveMultiplier) + (angular * gyroRotationMultiplier);
+
+        adjustedThreshold = minShakeThreshold * (11 - sensitivity) / 10f;
 
         float clampedIntensity = Mathf.Min(rawIntensity, maxShakeIntensity);
-        shakeIntensity = clampedIntensity >= minShakeThreshold ? clampedIntensity : 0f;
-
-        lastPosition = transform.position;
-        lastRotation = transform.rotation;
+        shakeIntensity = clampedIntensity >= adjustedThreshold ? clampedIntensity : 0f;
     }
 
     void RollDice()
@@ -135,5 +128,7 @@ public class ShakeManager : MonoBehaviour
         GUI.Label(new Rect(10, 30, 300, 20), $"Adjusted Threshold: {adjustedThreshold:F2}");
         GUI.Label(new Rect(10, 50, 300, 20), $"Sensitivity: {sensitivity}");
         GUI.Label(new Rect(10, 70, 300, 20), $"Force Applied: {(appliedForceThisFrame ? "Yes" : "No")}");
+        GUI.Label(new Rect(10, 100, 300, 20), $"Gyro: {debugGyroRate}");
+        GUI.Label(new Rect(10, 120, 300, 20), $"Accel: {debugAcceleration}");
     }
 }
