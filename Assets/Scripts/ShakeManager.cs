@@ -131,15 +131,15 @@ public class ShakeManager : MonoBehaviour
         }
     }
 
-    void OnGUI()
-    {
-        GUI.skin.label.fontSize = 24;  // Set font size to 24 (2x default)
+    // void OnGUI()
+    // {
+    //     GUI.skin.label.fontSize = 24;  // Set font size to 24 (2x default)
 
-        GUI.Label(new Rect(10, 10, 400, 30), $"Shake Intensity: {shakeIntensity:F2}");
-        GUI.Label(new Rect(10, 40, 400, 30), $"Activation Threshold: {GetActivationThreshold():F2}");
-        GUI.Label(new Rect(10, 70, 400, 30), $"Sensitivity: {sensitivity}");
-        GUI.Label(new Rect(10, 100, 400, 30), $"Force Applied: {(appliedForceThisFrame ? "Yes" : "No")}");
-        GUI.Label(new Rect(10, 140, 400, 30), $"Gyro: {debugGyroRate}");
-        GUI.Label(new Rect(10, 170, 400, 30), $"Accel: {debugAcceleration}");
-    }
+    //     GUI.Label(new Rect(10, 10, 400, 30), $"Shake Intensity: {shakeIntensity:F2}");
+    //     GUI.Label(new Rect(10, 40, 400, 30), $"Activation Threshold: {GetActivationThreshold():F2}");
+    //     GUI.Label(new Rect(10, 70, 400, 30), $"Sensitivity: {sensitivity}");
+    //     GUI.Label(new Rect(10, 100, 400, 30), $"Force Applied: {(appliedForceThisFrame ? "Yes" : "No")}");
+    //     GUI.Label(new Rect(10, 140, 400, 30), $"Gyro: {debugGyroRate}");
+    //     GUI.Label(new Rect(10, 170, 400, 30), $"Accel: {debugAcceleration}");
+    // }
 }
