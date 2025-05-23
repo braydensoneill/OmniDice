@@ -8,12 +8,12 @@ public class MaxSpeedLimiter : MonoBehaviour
 
     private Rigidbody rb;
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (rb.linearVelocity.magnitude > maxSpeed)
         {

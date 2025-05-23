@@ -7,7 +7,7 @@ public class ShakeManager : MonoBehaviour
 
     [Header("Settings")]
     public float forceMultiplier = 100f;
-    public float minShakeThreshold = 1.2f;
+    public float minShakeThreshold = 1.2f; // Not used now, replaced by GetActivationThreshold
     public float rotationIntensity = 0.05f;
     public float moveSpeed = 2f;
     [SerializeField][Range(1, 10)] private int sensitivity = 7;
@@ -24,9 +24,7 @@ public class ShakeManager : MonoBehaviour
 
     [Header("Debug")]
     public float shakeIntensity;
-    private float adjustedThreshold;
     private bool appliedForceThisFrame = false;
-
     private DiceManager[] diceArray;
 
     // Debug values
@@ -88,24 +86,34 @@ public class ShakeManager : MonoBehaviour
 
         float rawIntensity = (linear * accelMoveMultiplier) + (angular * gyroRotationMultiplier);
 
-        adjustedThreshold = minShakeThreshold * (11 - sensitivity) / 10f;
+        // Clamp intensity so it doesn't get unrealistically high
+        shakeIntensity = Mathf.Min(rawIntensity, maxShakeIntensity);
+    }
 
-        float clampedIntensity = Mathf.Min(rawIntensity, maxShakeIntensity);
-        shakeIntensity = clampedIntensity >= adjustedThreshold ? clampedIntensity : 0f;
+    float GetActivationThreshold()
+    {
+        // Sensitivity slider maps 1 (least sensitive) to 10 (most sensitive)
+        // Adjust these values to shift the entire slider sensitivity
+        float minThreshold = 9.0f;  // minimum shake required at lowest sensitivity (hardest to trigger)
+        float maxThreshold = 1.0f;  // minimum shake required at highest sensitivity (easiest to trigger)
+        return Mathf.Lerp(minThreshold, maxThreshold, (sensitivity - 1f) / 9f);
     }
 
     void RollDice()
     {
         appliedForceThisFrame = false;
+        if (diceArray == null || rollToDirection == null) return;
 
-        if (shakeIntensity <= 0f || diceArray == null || rollToDirection == null) return;
+        float activationThreshold = GetActivationThreshold();
+
+        // Only roll dice if shakeIntensity exceeds activation threshold
+        if (shakeIntensity < activationThreshold) return;
 
         appliedForceThisFrame = true;
 
         foreach (var dice in diceArray)
         {
             if (dice == null) continue;
-
             Rigidbody rb = dice.GetComponent<Rigidbody>();
             if (rb == null) continue;
 
@@ -118,6 +126,7 @@ public class ShakeManager : MonoBehaviour
             );
             Vector3 forcePoint = rb.position + randomOffset;
 
+            // Use shakeIntensity directly to scale rolling force (controls dice roll speed)
             rb.AddForceAtPosition(forceDir * shakeIntensity * forceMultiplier, forcePoint, ForceMode.Force);
         }
     }
@@ -125,7 +134,7 @@ public class ShakeManager : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(new Rect(10, 10, 300, 20), $"Shake Intensity: {shakeIntensity:F2}");
-        GUI.Label(new Rect(10, 30, 300, 20), $"Adjusted Threshold: {adjustedThreshold:F2}");
+        GUI.Label(new Rect(10, 30, 300, 20), $"Activation Threshold: {GetActivationThreshold():F2}");
         GUI.Label(new Rect(10, 50, 300, 20), $"Sensitivity: {sensitivity}");
         GUI.Label(new Rect(10, 70, 300, 20), $"Force Applied: {(appliedForceThisFrame ? "Yes" : "No")}");
         GUI.Label(new Rect(10, 100, 300, 20), $"Gyro: {debugGyroRate}");

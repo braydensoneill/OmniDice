@@ -4,7 +4,7 @@ using UnityEngine;
 public class DiceManager : MonoBehaviour
 {
     private Rigidbody rb;
-    public bool isRolling;
+    public bool isRolling { get; private set; }
 
     private void Awake()
     {
@@ -19,10 +19,10 @@ public class DiceManager : MonoBehaviour
 
     private void Update()
     {
-        if (isRolling && rb.linearVelocity.magnitude < 0.05f && rb.angularVelocity.magnitude < 0.05f)
+        if (isRolling && rb.linearVelocity.sqrMagnitude < 0.0025f && rb.angularVelocity.sqrMagnitude < 0.0025f)
         {
             isRolling = false;
-            // Optional: trigger landing animation or calculate result here
+            // Optional: Trigger result calculation or animation here
         }
     }
 }
