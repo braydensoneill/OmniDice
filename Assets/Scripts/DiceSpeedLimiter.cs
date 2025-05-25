@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MaxSpeedLimiter : MonoBehaviour
+public class DiceSpeedLimiter : MonoBehaviour
 {
     [Tooltip("The maximum speed the object is allowed to reach.")]
     public float maxSpeed = 10f;
