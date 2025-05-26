@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 54812151313401410}
   - component: {fileID: 114990654061221682}
   - component: {fileID: 114693338420854846}
-  - component: {fileID: 114087263014019396}
   - component: {fileID: -8766321861421668797}
   - component: {fileID: -6091407438070413756}
   m_Layer: 8
@@ -188,20 +187,6 @@ MonoBehaviour:
   _minAngularVelocity: 10
   _maxAngularVelocity: 15
   _nudgeAlongForce: 10
---- !u!114 &114087263014019396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852804267308654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff19981af085e14a8cf3a8d320cc146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _avoidanceForce: 4
-  _triggerOnStay: 0
 --- !u!114 &-8766321861421668797
 MonoBehaviour:
   m_ObjectHideFlags: 0
