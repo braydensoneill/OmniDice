@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -6327535185736040479}
   m_Layer: 8
   m_Name: D10
-  m_TagString: Untagged
+  m_TagString: Dice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,3 +230,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0f323ea35e04244a102a51b8363696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionSound: {fileID: 8300000, guid: 2f24ab8e2c7165046a4e19fc936933b1, type: 3}
