@@ -1,20 +1,64 @@
 using UnityEngine;
 
-public class WiggleUI : MonoBehaviour
+public class IdleTextAnimator : MonoBehaviour
 {
-    public float wiggleSpeed = 5f;
-    public float wiggleAmount = 10f;
+    [Header("Breathing Settings")]
+    public float pulseSpeed = 1.5f;
+    public float pulseAmount = 0.05f;
 
-    private Quaternion initialRotation;
+    [Header("Wiggle Settings")]
+    public float wiggleInterval = 4f;
+    public float wiggleDuration = 0.3f;
+    public float wiggleAmount = 5f;
+
+    private Vector3 originalScale;
+    private Vector3 originalRotation;
+    private float wiggleTimer = 0f;
+    private float wiggleTimeElapsed = 0f;
+    private bool isWiggling = false;
 
     void Start()
     {
-        initialRotation = transform.localRotation;
+        originalScale = transform.localScale;
+        originalRotation = transform.localEulerAngles;
     }
 
     void Update()
     {
-        float angle = Mathf.Sin(Time.time * wiggleSpeed) * wiggleAmount;
-        transform.localRotation = initialRotation * Quaternion.Euler(0f, 0f, angle);
+        AnimateBreathing();
+        AnimateWiggle();
+    }
+
+    void AnimateBreathing()
+    {
+        float scaleOffset = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseAmount;
+        transform.localScale = originalScale * scaleOffset;
+    }
+
+    void AnimateWiggle()
+    {
+        wiggleTimer += Time.deltaTime;
+
+        if (!isWiggling && wiggleTimer >= wiggleInterval)
+        {
+            isWiggling = true;
+            wiggleTimeElapsed = 0f;
+            wiggleTimer = 0f;
+        }
+
+        if (isWiggling)
+        {
+            wiggleTimeElapsed += Time.deltaTime;
+            float wiggleProgress = Mathf.PingPong(wiggleTimeElapsed * 10f, 1f);
+            float wiggleAngle = Mathf.Sin(wiggleProgress * Mathf.PI * 2f) * wiggleAmount;
+
+            transform.localEulerAngles = originalRotation + new Vector3(0f, 0f, wiggleAngle);
+
+            if (wiggleTimeElapsed >= wiggleDuration)
+            {
+                isWiggling = false;
+                transform.localEulerAngles = originalRotation;
+            }
+        }
     }
 }
