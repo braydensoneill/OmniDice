@@ -4,7 +4,6 @@ public class ShakeManager : MonoBehaviour
 {
     [Header("External References")]
     public Transform rollToDirection;
-    public GameObject UI_Shake; // 👈 Assign this in the Inspector
 
     [Header("Settings")]
     public float forceMultiplier = 100f;
@@ -32,10 +31,6 @@ public class ShakeManager : MonoBehaviour
     private Vector3 debugGyroRate;
     private Vector3 debugAcceleration;
 
-    // Timer to show UI_Shake
-    private float stillTimer = 0f;
-    private float stillThreshold = 3f;
-
     void Start()
     {
         if (SystemInfo.supportsGyroscope)
@@ -53,11 +48,6 @@ public class ShakeManager : MonoBehaviour
             Debug.LogWarning("No 'Dice' folder found at the root of the hierarchy.");
             diceArray = new DiceManager[0];
         }
-
-        if (UI_Shake != null)
-        {
-            UI_Shake.SetActive(false); // Start disabled
-        }
     }
 
     void FixedUpdate()
@@ -70,7 +60,6 @@ public class ShakeManager : MonoBehaviour
         MoveRollDirection();
         FindShakeIntensity();
         RollDice();
-        HandleUIShakeDisplay();
     }
 
     void ReadPhoneMotion()
@@ -132,35 +121,6 @@ public class ShakeManager : MonoBehaviour
             Vector3 forcePoint = dice.transform.position + randomOffset;
 
             dice.ApplyRollForce(forceDir * shakeIntensity * forceMultiplier, forcePoint);
-        }
-    }
-
-    void HandleUIShakeDisplay()
-    {
-        if (diceArray == null || UI_Shake == null) return;
-
-        bool anyRolling = false;
-        foreach (var dice in diceArray)
-        {
-            if (dice != null && dice.isRolling)
-            {
-                anyRolling = true;
-                break;
-            }
-        }
-
-        if (anyRolling)
-        {
-            stillTimer = 0f;
-            UI_Shake.SetActive(false);
-        }
-        else
-        {
-            stillTimer += Time.deltaTime;
-            if (stillTimer >= stillThreshold)
-            {
-                UI_Shake.SetActive(true);
-            }
         }
     }
 }
