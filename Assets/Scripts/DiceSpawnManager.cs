@@ -53,7 +53,7 @@ public class DiceSpawnerManager : MonoBehaviour
 
     public void RemoveDice()
     {
-        if (diceList.Count == 0) return;
+        if (diceList.Count <= 0) return;
 
         GameObject diceToRemove = diceList[diceList.Count - 1];
         diceList.RemoveAt(diceList.Count - 1);

@@ -2728,7 +2728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &820197865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2918,7 +2918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303e5c0fa2accfa4694de151bd9e0149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeManager: {fileID: 0}
+  shakeManager: {fileID: 386996551}
   dicePrefab: {fileID: 4136103727513959613, guid: c512837f62989824cbf768c89b49a695, type: 3}
   diceParent: {fileID: 1018313968}
   spawnPosition: {x: 0, y: 6, z: 1}
