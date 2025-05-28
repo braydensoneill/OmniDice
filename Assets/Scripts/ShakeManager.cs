@@ -84,7 +84,8 @@ public class ShakeManager : MonoBehaviour
         if (linear < accelDeadzone) linear = 0f;
         if (angular < gyroDeadzone) angular = 0f;
 
-        float rawIntensity = (linear * accelMoveMultiplier) + (angular * gyroRotationMultiplier);
+        float rawIntensity =
+        (linear * accelMoveMultiplier) + (angular * gyroRotationMultiplier);
 
         shakeIntensity = Mathf.Min(rawIntensity, maxShakeIntensity);
     }
@@ -123,4 +124,18 @@ public class ShakeManager : MonoBehaviour
             dice.ApplyRollForce(forceDir * shakeIntensity * forceMultiplier, forcePoint);
         }
     }
+
+    public void RefreshDiceList()
+    {
+        GameObject diceFolder = GameObject.Find("Dice");
+        if (diceFolder != null)
+        {
+            diceArray = diceFolder.GetComponentsInChildren<DiceManager>();
+        }
+        else
+        {
+            diceArray = new DiceManager[0];
+        }
+    }
+
 }

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class DiceSpawnerManager : MonoBehaviour
 {
+    [Header("External References")]
+    public ShakeManager shakeManager;
+
     [Header("Dice Settings")]
     public GameObject dicePrefab;
     public Transform diceParent;
@@ -43,6 +46,9 @@ public class DiceSpawnerManager : MonoBehaviour
         diceList.Add(newDice);
         RescaleAllDice();
         UpdateDiceCountText();
+
+        if (shakeManager != null)
+            shakeManager.RefreshDiceList();
     }
 
     public void RemoveDice()
@@ -54,6 +60,9 @@ public class DiceSpawnerManager : MonoBehaviour
         Destroy(diceToRemove);
         RescaleAllDice();
         UpdateDiceCountText();
+
+        if (shakeManager != null)
+            shakeManager.RefreshDiceList();
     }
 
     private void RescaleAllDice()
