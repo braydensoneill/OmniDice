@@ -280,10 +280,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: RemoveDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1749688531922966, guid: 895de25fcca5b834a8d280b88a8f82b7, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -442,12 +442,12 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1010677716}
   m_HandleRect: {fileID: 1010677715}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5185185
+  m_Size: 0.5
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -801,10 +801,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: RemoveDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4136103727513959613, guid: c512837f62989824cbf768c89b49a695, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -830,7 +830,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: c5984235dfe486648822b6c13d8a0f08, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -993,9 +993,9 @@ RectTransform:
   - {fileID: 903935842}
   m_Father: {fileID: 1967788759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 691.5, y: -1050}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &115515217
@@ -1455,9 +1455,9 @@ RectTransform:
   m_Father: {fileID: 1760692606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &192568544
 MonoBehaviour:
@@ -1510,80 +1510,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192568542}
   m_CullTransparentMesh: 1
---- !u!1001 &196817229
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1018313968}
-    m_Modifications:
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4136103727513959613, guid: c512837f62989824cbf768c89b49a695, type: 3}
-      propertyPath: m_Name
-      value: Classic
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c512837f62989824cbf768c89b49a695, type: 3}
---- !u!4 &196817230 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
-  m_PrefabInstance: {fileID: 196817229}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &220735677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,9 +1546,9 @@ RectTransform:
   - {fileID: 993767574}
   m_Father: {fileID: 1967788759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 691.5, y: -450}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &223589810
@@ -2069,9 +1995,9 @@ RectTransform:
   - {fileID: 512182480}
   m_Father: {fileID: 1967788759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 691.5, y: -1950}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &251620312
@@ -2178,8 +2104,8 @@ Transform:
   m_GameObject: {fileID: 290413942}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0445, y: 3.773, z: 10.395}
-  m_LocalScale: {x: 6.1582146, y: 7.546, z: 0.1}
+  m_LocalPosition: {x: -0.0445, y: 20, z: 10.395}
+  m_LocalScale: {x: 6.1582146, y: 40, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1398299043}
@@ -2669,9 +2595,9 @@ RectTransform:
   - {fileID: 2064101203}
   m_Father: {fileID: 1967788759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 691.5, y: -150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &345898529
@@ -2778,7 +2704,7 @@ Transform:
   m_GameObject: {fileID: 367308986}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.5, z: 2.5}
+  m_LocalPosition: {x: 0, y: 40, z: 2.5}
   m_LocalScale: {x: 6, y: 0.1, z: 16}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2971,10 +2897,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: RemoveDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1271395369220238, guid: 82baff3f273e4f945aaf64c50a978eac, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3846,9 +3772,9 @@ RectTransform:
   - {fileID: 1958679457}
   m_Father: {fileID: 1967788759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 691.5, y: -2550}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &491907790
@@ -3974,10 +3900,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: AddDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4136103727513959613, guid: 707fa3df1bfc5c24aa5812d9f1743e6b, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4476,7 +4402,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: null
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4834,7 +4760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: null
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5418,9 +5344,9 @@ RectTransform:
   - {fileID: 883264492}
   m_Father: {fileID: 1967788759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 691.5, y: -750}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &820197864
@@ -5438,7 +5364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &820197865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5942,10 +5868,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: AddDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1061270642767088, guid: ef744bcd101a9da41bffe386846c822d, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5989,6 +5915,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883264491}
   m_CullTransparentMesh: 1
+--- !u!1001 &896738538
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1018313968}
+    m_Modifications:
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136103727513959613, guid: c512837f62989824cbf768c89b49a695, type: 3}
+      propertyPath: m_Name
+      value: Classic
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c512837f62989824cbf768c89b49a695, type: 3}
 --- !u!1 &903935841
 GameObject:
   m_ObjectHideFlags: 0
@@ -6075,10 +6058,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: AddDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1491295205191328, guid: ef8f3c0819c43a1499efffb9532abfc4, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6237,14 +6220,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303e5c0fa2accfa4694de151bd9e0149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeManager: {fileID: 386996551}
-  dicePrefab: {fileID: 4136103727513959613, guid: c512837f62989824cbf768c89b49a695, type: 3}
-  diceParent: {fileID: 1018313968}
-  spawnPosition: {x: 0, y: 6, z: 1}
-  minScale: 0.2
-  maxScale: 1
-  maxDiceCountForMinScale: 40
-  diceCountText: {fileID: 1074532041}
+  diceTypes:
+  - dicePrefab: {fileID: 4136103727513959613, guid: c512837f62989824cbf768c89b49a695, type: 3}
+    countText: {fileID: 1074532041}
+  - dicePrefab: {fileID: 1749688531922966, guid: 895de25fcca5b834a8d280b88a8f82b7, type: 3}
+    countText: {fileID: 606826557}
+  - dicePrefab: {fileID: 1061270642767088, guid: ef744bcd101a9da41bffe386846c822d, type: 3}
+    countText: {fileID: 1438601089}
+  - dicePrefab: {fileID: 1491295205191328, guid: ef8f3c0819c43a1499efffb9532abfc4, type: 3}
+    countText: {fileID: 1344909624}
+  - dicePrefab: {fileID: 1271395369220238, guid: 82baff3f273e4f945aaf64c50a978eac, type: 3}
+    countText: {fileID: 1797901541}
+  - dicePrefab: {fileID: 1176532198219360, guid: 6f9aa1e8204279f4394dc6532a74353f, type: 3}
+    countText: {fileID: 675944446}
+  - dicePrefab: {fileID: 4136103727513959613, guid: 707fa3df1bfc5c24aa5812d9f1743e6b, type: 3}
+    countText: {fileID: 1548616046}
+  - dicePrefab: {fileID: 1393145417981978, guid: 6727e807c92303e4eb078e3b60c17e1d, type: 3}
+    countText: {fileID: 1207009391}
+  - dicePrefab: {fileID: 1852804267308654, guid: 885ec9d35a8ace14eb02a931ae05de39, type: 3}
+    countText: {fileID: 1719202069}
 --- !u!4 &955109697
 Transform:
   m_ObjectHideFlags: 0
@@ -6346,10 +6340,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: AddDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1393145417981978, guid: 6727e807c92303e4eb078e3b60c17e1d, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6479,10 +6473,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: AddDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1749688531922966, guid: 895de25fcca5b834a8d280b88a8f82b7, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6555,8 +6549,8 @@ Transform:
   m_GameObject: {fileID: 1006428913}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.93, y: 3.773, z: 2.4902}
-  m_LocalScale: {x: 0.1, y: 7.546, z: 16.104645}
+  m_LocalPosition: {x: -2.93, y: 20, z: 2.4902}
+  m_LocalScale: {x: 0.1, y: 40, z: 16.104645}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1398299043}
@@ -6694,8 +6688,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 651399262}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6766,7 +6760,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 196817230}
+  - {fileID: 1501314622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1025693658
@@ -7005,10 +6999,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: RemoveDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1393145417981978, guid: 6727e807c92303e4eb078e3b60c17e1d, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7184,7 +7178,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: null
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7629,9 +7623,9 @@ RectTransform:
   - {fileID: 984467113}
   m_Father: {fileID: 1967788759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 691.5, y: -2250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1110638475
@@ -8111,7 +8105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: null
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8667,10 +8661,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: RemoveDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1061270642767088, guid: ef744bcd101a9da41bffe386846c822d, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8743,8 +8737,8 @@ Transform:
   m_GameObject: {fileID: 1291081999}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0127, y: 3.773, z: -5.406}
-  m_LocalScale: {x: 6.157546, y: 7.546, z: 0.1}
+  m_LocalPosition: {x: -0.0127, y: 20, z: -5.406}
+  m_LocalScale: {x: 6.157546, y: 40, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1398299043}
@@ -9043,7 +9037,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: null
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9283,10 +9277,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: RemoveDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1491295205191328, guid: ef8f3c0819c43a1499efffb9532abfc4, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9453,10 +9447,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: RemoveDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1176532198219360, guid: 6f9aa1e8204279f4394dc6532a74353f, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9625,7 +9619,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: null
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9790,10 +9784,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: AddDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1271395369220238, guid: 82baff3f273e4f945aaf64c50a978eac, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10048,6 +10042,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493686762}
   m_CullTransparentMesh: 1
+--- !u!4 &1501314622 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1012360848298868857, guid: c512837f62989824cbf768c89b49a695, type: 3}
+  m_PrefabInstance: {fileID: 896738538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1521161294
 GameObject:
   m_ObjectHideFlags: 0
@@ -10241,7 +10240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: null
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10406,10 +10405,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: AddDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1176532198219360, guid: 6f9aa1e8204279f4394dc6532a74353f, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10539,10 +10538,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: RemoveDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1852804267308654, guid: 885ec9d35a8ace14eb02a931ae05de39, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11133,7 +11132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: null
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11498,7 +11497,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1400, y: 1400}
+  m_SizeDelta: {x: 1400, y: 1350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1760692607
 MonoBehaviour:
@@ -11790,10 +11789,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: RemoveDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4136103727513959613, guid: 707fa3df1bfc5c24aa5812d9f1743e6b, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11873,9 +11872,9 @@ RectTransform:
   - {fileID: 1574038389}
   m_Father: {fileID: 1967788759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 691.5, y: -1650}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1793899891
@@ -12010,7 +12009,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: null
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12981,10 +12980,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: AddDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1852804267308654, guid: 885ec9d35a8ace14eb02a931ae05de39, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -13197,8 +13196,8 @@ RectTransform:
   - {fileID: 340373986}
   - {fileID: 220735678}
   - {fileID: 816487638}
-  - {fileID: 2105892604}
   - {fileID: 100671665}
+  - {fileID: 2105892604}
   - {fileID: 1790482063}
   - {fileID: 250487151}
   - {fileID: 1093823024}
@@ -13208,7 +13207,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 2700}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1967788760
 MonoBehaviour:
@@ -13672,10 +13671,10 @@ MonoBehaviour:
       - m_Target: {fileID: 955109696}
         m_TargetAssemblyTypeName: DiceSpawnManager, Assembly-CSharp
         m_MethodName: AddDice
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4136103727513959613, guid: c512837f62989824cbf768c89b49a695, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -13822,8 +13821,8 @@ Transform:
   m_GameObject: {fileID: 2085345513}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.93, y: 3.773, z: 2.4902}
-  m_LocalScale: {x: 0.1, y: 7.546, z: 16.104645}
+  m_LocalPosition: {x: 2.93, y: 20, z: 2.4902}
+  m_LocalScale: {x: 0.1, y: 40, z: 16.104645}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1398299043}
@@ -14101,9 +14100,9 @@ RectTransform:
   - {fileID: 1447754611}
   m_Father: {fileID: 1967788759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 691.5, y: -1350}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2114666843
