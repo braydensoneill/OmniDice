@@ -7,7 +7,7 @@ public class ShakeManager : MonoBehaviour
 
     [Header("Settings")]
     public float forceMultiplier = 100f;
-    public float minShakeThreshold = 1.2f; // Not used now, replaced by GetActivationThreshold
+    public float minShakeThreshold = 1.2f;
     public float rotationIntensity = 0.05f;
     public float moveSpeed = 2f;
     [SerializeField][Range(1, 10)] private int sensitivity = 1;
@@ -27,7 +27,6 @@ public class ShakeManager : MonoBehaviour
     private bool appliedForceThisFrame = false;
     private DiceManager[] diceArray;
 
-    // Debug values
     private Vector3 debugGyroRate;
     private Vector3 debugAcceleration;
 
@@ -38,16 +37,7 @@ public class ShakeManager : MonoBehaviour
             Input.gyro.enabled = true;
         }
 
-        GameObject diceFolder = GameObject.Find("Dice");
-        if (diceFolder != null)
-        {
-            diceArray = diceFolder.GetComponentsInChildren<DiceManager>();
-        }
-        else
-        {
-            Debug.LogWarning("No 'Dice' folder found at the root of the hierarchy.");
-            diceArray = new DiceManager[0];
-        }
+        RefreshDiceList();
     }
 
     void FixedUpdate()
@@ -84,9 +74,7 @@ public class ShakeManager : MonoBehaviour
         if (linear < accelDeadzone) linear = 0f;
         if (angular < gyroDeadzone) angular = 0f;
 
-        float rawIntensity =
-        (linear * accelMoveMultiplier) + (angular * gyroRotationMultiplier);
-
+        float rawIntensity = (linear * accelMoveMultiplier) + (angular * gyroRotationMultiplier);
         shakeIntensity = Mathf.Min(rawIntensity, maxShakeIntensity);
     }
 
@@ -127,15 +115,6 @@ public class ShakeManager : MonoBehaviour
 
     public void RefreshDiceList()
     {
-        GameObject diceFolder = GameObject.Find("Dice");
-        if (diceFolder != null)
-        {
-            diceArray = diceFolder.GetComponentsInChildren<DiceManager>();
-        }
-        else
-        {
-            diceArray = new DiceManager[0];
-        }
+        diceArray = FindObjectsOfType<DiceManager>();
     }
-
 }

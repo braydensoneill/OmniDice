@@ -26,13 +26,11 @@ public class DiceManager : MonoBehaviour
         if (isRolling && rb.linearVelocity.sqrMagnitude < 0.0025f && rb.angularVelocity.sqrMagnitude < 0.0025f)
         {
             isRolling = false;
-            // Optional: Trigger result calculation or animation here
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Play a quick button click sound on first collision
         if (collisionSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(collisionSound);
