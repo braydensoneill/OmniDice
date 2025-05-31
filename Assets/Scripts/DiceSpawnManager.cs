@@ -6,8 +6,8 @@ using UnityEngine.UI;
 [System.Serializable]
 public class DiceTypeUI
 {
-    public GameObject dicePrefab; // The prefab for this dice type
-    public TextMeshProUGUI countText;        // UI Text element to display this type's count
+    public GameObject dicePrefab;          // The prefab for this dice type
+    public TextMeshProUGUI countText;      // UI Text element to display this type's count
 }
 
 public class DiceSpawnManager : MonoBehaviour
@@ -48,6 +48,20 @@ public class DiceSpawnManager : MonoBehaviour
         // Spawn the dice at a calculated position
         GameObject newDice = Instantiate(dicePrefabToAdd, GetSpawnPosition(), Quaternion.identity);
         spawnedDiceInstances.Add(newDice);
+
+        // Apply rolling force to make the new dice shake
+        DiceManager diceManager = newDice.GetComponent<DiceManager>();
+        if (diceManager != null)
+        {
+            Vector3 randomForce = new Vector3(
+                Random.Range(-5f, 5f),
+                Random.Range(5f, 10f),
+                Random.Range(-5f, 5f)
+            );
+            Vector3 forcePoint = newDice.transform.position + Vector3.up * 0.5f; // slightly above center
+
+            diceManager.ApplyRollForce(randomForce, forcePoint);
+        }
 
         UpdateDiceCounts();
     }
