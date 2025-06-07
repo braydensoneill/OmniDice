@@ -25,6 +25,9 @@ public class DiceSpawnManager : MonoBehaviour
     public float maxScale = 1f;
     public int maxDiceCountForMinScale = 40;
 
+    [Header("UI")]
+    public TextMeshProUGUI totalDiceCountText;
+
     private Dictionary<DiceType, List<GameObject>> diceList = new Dictionary<DiceType, List<GameObject>>();
 
     private void Start()
@@ -54,6 +57,8 @@ public class DiceSpawnManager : MonoBehaviour
             UpdateScaleForType(type);
             UpdateDiceCountText(type);
         }
+
+        UpdateTotalDiceCount();
     }
 
     public void AddDice(GameObject prefab)
@@ -69,6 +74,7 @@ public class DiceSpawnManager : MonoBehaviour
         diceList[type].Add(newDice);
         UpdateScaleForType(type);
         UpdateDiceCountText(type);
+        UpdateTotalDiceCount();
 
         if (shakeManager != null)
             shakeManager.RefreshDiceList();
@@ -88,6 +94,29 @@ public class DiceSpawnManager : MonoBehaviour
         Destroy(diceToRemove);
         UpdateScaleForType(type);
         UpdateDiceCountText(type);
+        UpdateTotalDiceCount();
+
+        if (shakeManager != null)
+            shakeManager.RefreshDiceList();
+    }
+
+    public void RemoveAllDice()
+    {
+        foreach (var type in diceTypes)
+        {
+            List<GameObject> diceToRemove = diceList[type];
+            foreach (GameObject dice in diceToRemove)
+            {
+                if (dice != null)
+                {
+                    Destroy(dice);
+                }
+            }
+            diceToRemove.Clear();
+            UpdateDiceCountText(type);
+        }
+
+        UpdateTotalDiceCount();
 
         if (shakeManager != null)
             shakeManager.RefreshDiceList();
@@ -116,6 +145,20 @@ public class DiceSpawnManager : MonoBehaviour
         }
     }
 
+    private void UpdateTotalDiceCount()
+    {
+        int totalCount = 0;
+        foreach (var type in diceTypes)
+        {
+            totalCount += diceList[type].Count;
+        }
+
+        if (totalDiceCountText != null)
+        {
+            totalDiceCountText.text = totalCount.ToString();
+        }
+    }
+
     // Optional wrappers for Unity UI buttons
     public void AddDiceByIndex(int index)
     {
@@ -131,25 +174,5 @@ public class DiceSpawnManager : MonoBehaviour
         {
             RemoveDice(diceTypes[index].prefab);
         }
-    }
-
-    public void RemoveAllDice()
-    {
-        foreach (var type in diceTypes)
-        {
-            List<GameObject> diceToRemove = diceList[type];
-            foreach (GameObject dice in diceToRemove)
-            {
-                if (dice != null)
-                {
-                    Destroy(dice);
-                }
-            }
-            diceToRemove.Clear();
-            UpdateDiceCountText(type);
-        }
-
-        if (shakeManager != null)
-            shakeManager.RefreshDiceList();
     }
 }
