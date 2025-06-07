@@ -132,4 +132,24 @@ public class DiceSpawnManager : MonoBehaviour
             RemoveDice(diceTypes[index].prefab);
         }
     }
+
+    public void RemoveAllDice()
+    {
+        foreach (var type in diceTypes)
+        {
+            List<GameObject> diceToRemove = diceList[type];
+            foreach (GameObject dice in diceToRemove)
+            {
+                if (dice != null)
+                {
+                    Destroy(dice);
+                }
+            }
+            diceToRemove.Clear();
+            UpdateDiceCountText(type);
+        }
+
+        if (shakeManager != null)
+            shakeManager.RefreshDiceList();
+    }
 }
