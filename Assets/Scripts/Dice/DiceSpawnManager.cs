@@ -52,9 +52,10 @@ public class DiceSpawnManager : MonoBehaviour
             }
         }
 
+        UpdateScaleForAllDice();
+
         foreach (var type in diceTypes)
         {
-            UpdateScaleForType(type);
             UpdateDiceCountText(type);
         }
 
@@ -72,7 +73,8 @@ public class DiceSpawnManager : MonoBehaviour
 
         GameObject newDice = Instantiate(type.prefab, spawnPosition, Random.rotation, diceParent);
         diceList[type].Add(newDice);
-        UpdateScaleForType(type);
+
+        UpdateScaleForAllDice();
         UpdateDiceCountText(type);
         UpdateTotalDiceCount();
 
@@ -92,7 +94,8 @@ public class DiceSpawnManager : MonoBehaviour
         GameObject diceToRemove = diceList[type][diceList[type].Count - 1];
         diceList[type].RemoveAt(diceList[type].Count - 1);
         Destroy(diceToRemove);
-        UpdateScaleForType(type);
+
+        UpdateScaleForAllDice();
         UpdateDiceCountText(type);
         UpdateTotalDiceCount();
 
@@ -116,23 +119,32 @@ public class DiceSpawnManager : MonoBehaviour
             UpdateDiceCountText(type);
         }
 
+        UpdateScaleForAllDice();
         UpdateTotalDiceCount();
 
         if (shakeManager != null)
             shakeManager.RefreshDiceList();
     }
 
-    private void UpdateScaleForType(DiceType type)
+    private void UpdateScaleForAllDice()
     {
-        int count = diceList[type].Count;
-        float t = Mathf.InverseLerp(1, maxDiceCountForMinScale, count);
+        int totalCount = 0;
+        foreach (var type in diceTypes)
+        {
+            totalCount += diceList[type].Count;
+        }
+
+        float t = Mathf.InverseLerp(1, maxDiceCountForMinScale, totalCount);
         float scale = Mathf.Lerp(maxScale, minScale, t);
 
-        foreach (GameObject dice in diceList[type])
+        foreach (var type in diceTypes)
         {
-            if (dice != null)
+            foreach (GameObject dice in diceList[type])
             {
-                dice.transform.localScale = Vector3.one * scale;
+                if (dice != null)
+                {
+                    dice.transform.localScale = Vector3.one * scale;
+                }
             }
         }
     }

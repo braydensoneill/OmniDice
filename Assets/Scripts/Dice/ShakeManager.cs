@@ -96,6 +96,11 @@ public class ShakeManager : MonoBehaviour
 
         appliedForceThisFrame = true;
 
+        // Trigger vibration
+#if UNITY_ANDROID || UNITY_IOS
+        Handheld.Vibrate();
+#endif
+
         foreach (var dice in diceArray)
         {
             if (dice == null) continue;
