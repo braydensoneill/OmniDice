@@ -28,7 +28,12 @@ public class InfiniteScroll : MonoBehaviour
     Vector2 OldVelocity;
     bool isUpdated;
     int itemsToAdd;
-    int currentSelectedIndex = 0;    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    int currentSelectedIndex = 0;
+
+    // Cache frequently used calculations
+    private float cachedItemWidth;
+    private float cachedOneSetWidth;
+    private float cachedStartPosition;    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isUpdated = false;
@@ -37,7 +42,10 @@ public class InfiniteScroll : MonoBehaviour
         // Store the original deceleration rate
         originalDecelerationRate = scrollRect.decelerationRate;
 
-        float itemWidth = itemList[0].rect.width + horizontalLayoutGroup.spacing;
+        // Cache these calculations once
+        cachedItemWidth = itemList[0].rect.width + horizontalLayoutGroup.spacing;
+        cachedOneSetWidth = itemList.Length * cachedItemWidth;
+        cachedStartPosition = -cachedOneSetWidth; // Position of middle set
 
         // Simple approach: create 3 sets of items
         // [Set 1] [Set 2] [Set 3]
@@ -54,7 +62,6 @@ public class InfiniteScroll : MonoBehaviour
         }
 
         // Position to start viewing the middle set (Set 2)
-        float oneSetWidth = itemList.Length * itemWidth;
 
         // Find the index of 'classic' to center it initially
         int classicIndex = -1;
@@ -68,8 +75,8 @@ public class InfiniteScroll : MonoBehaviour
         }
 
         // Position content so classic dice is centered
-        float classicOffset = classicIndex >= 0 ? classicIndex * itemWidth : 0;
-        contentPanelTransform.localPosition = new Vector3(-oneSetWidth - classicOffset,
+        float classicOffset = classicIndex >= 0 ? classicIndex * cachedItemWidth : 0;
+        contentPanelTransform.localPosition = new Vector3(-cachedOneSetWidth - classicOffset,
             contentPanelTransform.localPosition.y,
             contentPanelTransform.localPosition.z);        // Set the initial selected index to classic
         currentSelectedIndex = classicIndex >= 0 ? classicIndex : 0;
@@ -91,27 +98,25 @@ public class InfiniteScroll : MonoBehaviour
             scrollRect.velocity = OldVelocity;
         }
 
-        float itemWidth = itemList[0].rect.width + horizontalLayoutGroup.spacing;
-        float oneSetWidth = itemList.Length * itemWidth;
-        float startPosition = -oneSetWidth; // Position of middle set
+        // Use cached values instead of recalculating every frame
 
         // Simple boundaries: if we scroll one complete set away from center, loop back
 
         // Right boundary - scrolled past Set 3 into empty space
-        if (contentPanelTransform.localPosition.x > startPosition + oneSetWidth * 0.5f)
+        if (contentPanelTransform.localPosition.x > cachedStartPosition + cachedOneSetWidth * 0.5f)
         {
             Canvas.ForceUpdateCanvases();
             OldVelocity = scrollRect.velocity;
-            contentPanelTransform.localPosition -= new Vector3(oneSetWidth, 0, 0);
+            contentPanelTransform.localPosition -= new Vector3(cachedOneSetWidth, 0, 0);
             isUpdated = true;
         }
 
         // Left boundary - scrolled past Set 1 into empty space
-        if (contentPanelTransform.localPosition.x < startPosition - oneSetWidth * 0.5f)
+        if (contentPanelTransform.localPosition.x < cachedStartPosition - cachedOneSetWidth * 0.5f)
         {
             Canvas.ForceUpdateCanvases();
             OldVelocity = scrollRect.velocity;
-            contentPanelTransform.localPosition += new Vector3(oneSetWidth, 0, 0);
+            contentPanelTransform.localPosition += new Vector3(cachedOneSetWidth, 0, 0);
             isUpdated = true;
         }
 
@@ -123,7 +128,7 @@ public class InfiniteScroll : MonoBehaviour
     }
     void UpdateSelectedDice()
     {
-        float itemWidth = itemList[0].rect.width + horizontalLayoutGroup.spacing;
+        // Use cached item width instead of recalculating
 
         // Calculate the center of the viewport in world space
         // Use the actual center of the viewport, not the left edge
@@ -134,11 +139,11 @@ public class InfiniteScroll : MonoBehaviour
 
         // Find which item is closest to the center
         // We need to account for the fact that items start at x = 0 in the content panel
-        float firstItemCenter = itemWidth * 0.5f; // Center of the first item
+        float firstItemCenter = cachedItemWidth * 0.5f; // Center of the first item
         float offsetFromFirstItem = localCenter.x - firstItemCenter;
 
         // Calculate which item index we're closest to
-        int closestIndex = Mathf.RoundToInt(offsetFromFirstItem / itemWidth);
+        int closestIndex = Mathf.RoundToInt(offsetFromFirstItem / cachedItemWidth);
 
         // Wrap the index to stay within the original itemList bounds
         closestIndex = ((closestIndex % itemList.Length) + itemList.Length) % itemList.Length;

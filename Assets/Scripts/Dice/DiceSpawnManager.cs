@@ -38,8 +38,8 @@ public class DiceSpawnManager : MonoBehaviour
             diceList[type] = new List<GameObject>();
         }
 
-        // Collect existing dice in the scene
-        DiceManager[] existingDice = FindObjectsOfType<DiceManager>();
+        // Collect existing dice in the scene using the modern API
+        DiceManager[] existingDice = FindObjectsByType<DiceManager>(FindObjectsSortMode.None);
         foreach (DiceManager dice in existingDice)
         {
             foreach (var type in diceTypes)
@@ -136,14 +136,23 @@ public class DiceSpawnManager : MonoBehaviour
 
         float t = Mathf.InverseLerp(1, maxDiceCountForMinScale, totalCount);
         float scale = Mathf.Lerp(maxScale, minScale, t);
+        Vector3 scaleVector = Vector3.one * scale;
 
+        // Apply scale to all dice in one pass
         foreach (var type in diceTypes)
         {
-            foreach (GameObject dice in diceList[type])
+            var diceTypeList = diceList[type];
+            for (int i = diceTypeList.Count - 1; i >= 0; i--)
             {
+                GameObject dice = diceTypeList[i];
                 if (dice != null)
                 {
-                    dice.transform.localScale = Vector3.one * scale;
+                    dice.transform.localScale = scaleVector;
+                }
+                else
+                {
+                    // Remove null references during iteration
+                    diceTypeList.RemoveAt(i);
                 }
             }
         }

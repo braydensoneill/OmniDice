@@ -24,11 +24,14 @@ public class ShakeManager : MonoBehaviour
 
     [Header("Debug")]
     public float shakeIntensity;
-    private bool appliedForceThisFrame = false;
     private DiceManager[] diceArray;
 
     private Vector3 debugGyroRate;
     private Vector3 debugAcceleration;
+
+    // Cache frequently used values
+    private float cachedActivationThreshold;
+    private bool thresholdCacheDirty = true;
 
     void Start()
     {
@@ -80,14 +83,25 @@ public class ShakeManager : MonoBehaviour
 
     float GetActivationThreshold()
     {
-        float minThreshold = 9.0f;
-        float maxThreshold = 1.0f;
-        return Mathf.Lerp(minThreshold, maxThreshold, (sensitivity - 1f) / 9f);
+        // Cache the threshold calculation since sensitivity doesn't change often
+        if (thresholdCacheDirty)
+        {
+            float minThreshold = 9.0f;
+            float maxThreshold = 1.0f;
+            cachedActivationThreshold = Mathf.Lerp(minThreshold, maxThreshold, (sensitivity - 1f) / 9f);
+            thresholdCacheDirty = false;
+        }
+        return cachedActivationThreshold;
+    }
+
+    // Call this when sensitivity changes in inspector or at runtime
+    public void InvalidateThresholdCache()
+    {
+        thresholdCacheDirty = true;
     }
 
     void RollDice()
     {
-        appliedForceThisFrame = false;
         if (diceArray == null || rollToDirection == null) return;
 
         float activationThreshold = GetActivationThreshold();
@@ -107,8 +121,6 @@ public class ShakeManager : MonoBehaviour
 
         if (!hasValidDice) return;
 
-        appliedForceThisFrame = true;
-
         // Trigger vibration only if there are dice to affect
 #if UNITY_ANDROID || UNITY_IOS
         Handheld.Vibrate();
@@ -118,16 +130,21 @@ public class ShakeManager : MonoBehaviour
         {
             if (dice == null) continue;
 
-            Vector3 forceDir = (rollToDirection.position - dice.transform.position).normalized;
+            // Cache transform position to avoid multiple property calls
+            Vector3 dicePosition = dice.transform.position;
+            Vector3 forceDir = (rollToDirection.position - dicePosition).normalized;
 
+            // Pre-calculate random offset values
             Vector3 randomOffset = new Vector3(
                 Random.Range(-rotationIntensity, rotationIntensity),
                 Random.Range(-rotationIntensity, rotationIntensity),
                 Random.Range(-rotationIntensity, rotationIntensity)
             );
-            Vector3 forcePoint = dice.transform.position + randomOffset;
+            Vector3 forcePoint = dicePosition + randomOffset;
 
-            dice.ApplyRollForce(forceDir * shakeIntensity * forceMultiplier, forcePoint);
+            // Cache the force calculation
+            Vector3 appliedForce = forceDir * shakeIntensity * forceMultiplier;
+            dice.ApplyRollForce(appliedForce, forcePoint);
         }
     }
 
