@@ -94,9 +94,22 @@ public class ShakeManager : MonoBehaviour
 
         if (shakeIntensity < activationThreshold) return;
 
+        // Check if there are any valid dice before applying force and vibration
+        bool hasValidDice = false;
+        foreach (var dice in diceArray)
+        {
+            if (dice != null)
+            {
+                hasValidDice = true;
+                break;
+            }
+        }
+
+        if (!hasValidDice) return;
+
         appliedForceThisFrame = true;
 
-        // Trigger vibration
+        // Trigger vibration only if there are dice to affect
 #if UNITY_ANDROID || UNITY_IOS
         Handheld.Vibrate();
 #endif
@@ -120,6 +133,6 @@ public class ShakeManager : MonoBehaviour
 
     public void RefreshDiceList()
     {
-        diceArray = FindObjectsOfType<DiceManager>();
+        diceArray = FindObjectsByType<DiceManager>(FindObjectsSortMode.None);
     }
 }
