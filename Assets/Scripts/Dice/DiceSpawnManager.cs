@@ -187,4 +187,16 @@ public class DiceSpawnManager : MonoBehaviour
             RemoveDice(diceTypes[index].prefab);
         }
     }
+
+    // Method to add dice based on the currently selected dice from infinite scroll
+    public void AddSelectedDice(int selectedIndex)
+    {
+        AddDiceByIndex(selectedIndex);
+    }
+
+    // Method to remove dice based on the currently selected dice from infinite scroll
+    public void RemoveSelectedDice(int selectedIndex)
+    {
+        RemoveDiceByIndex(selectedIndex);
+    }
 }
