@@ -17,10 +17,14 @@ public class IdleTextAnimator : MonoBehaviour
     private float wiggleTimeElapsed = 0f;
     private bool isWiggling = false;
 
+    // Cache for performance
+    private float nextWiggleTime;
+
     void Start()
     {
         originalScale = transform.localScale;
         originalRotation = transform.localEulerAngles;
+        nextWiggleTime = Time.time + wiggleInterval;
     }
 
     void Update()
@@ -37,13 +41,12 @@ public class IdleTextAnimator : MonoBehaviour
 
     void AnimateWiggle()
     {
-        wiggleTimer += Time.deltaTime;
-
-        if (!isWiggling && wiggleTimer >= wiggleInterval)
+        // Use cached time instead of accumulating deltaTime
+        if (!isWiggling && Time.time >= nextWiggleTime)
         {
             isWiggling = true;
             wiggleTimeElapsed = 0f;
-            wiggleTimer = 0f;
+            nextWiggleTime = Time.time + wiggleInterval;
         }
 
         if (isWiggling)
