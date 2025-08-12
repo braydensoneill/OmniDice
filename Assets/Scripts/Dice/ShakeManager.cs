@@ -40,7 +40,7 @@ public class ShakeManager : MonoBehaviour
     [Header("Direct Movement")]
     [SerializeField] private float directMovementMultiplier = 1.0f;    // How strongly phone movement affects dice
     [SerializeField] private float minimumUpwardForce = 0.2f;          // Minimum upward force to overcome gravity
-    [SerializeField] private float zNegativeMultiplier = 1.2f;         // Makes Z- movement easier than Z+ (1.0 = equal, >1.0 = easier Z-)
+    [SerializeField] private float zNegativeMultiplier = 1.5f;         // Makes Z- movement easier than Z+ (1.0 = equal, >1.0 = easier Z-)
 
     [Header("Natural Feel")]
     [SerializeField] private float intensitySmoothing = 0.8f;          // How much previous intensity affects current (0-1)
