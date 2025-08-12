@@ -33,7 +33,11 @@ public class InfiniteScroll : MonoBehaviour
     // Cache frequently used calculations
     private float cachedItemWidth;
     private float cachedOneSetWidth;
-    private float cachedStartPosition;    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private float cachedStartPosition;
+
+    // Prevent automatic selection changes during startup
+    private bool allowAutoSelection = false;
+    private bool hasUserScrolled = false;    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isUpdated = false;
@@ -74,17 +78,33 @@ public class InfiniteScroll : MonoBehaviour
             }
         }
 
-        // Position content so classic dice is centered
-        float classicOffset = classicIndex >= 0 ? classicIndex * cachedItemWidth : 0;
-        contentPanelTransform.localPosition = new Vector3(-cachedOneSetWidth - classicOffset,
+        // Position content so the first dice (index 0) is perfectly centered
+        // We need to account for the item's center position, not just its left edge
+        float firstDiceCenter = cachedItemWidth * 0.5f; // Center of the first item
+        float targetPosition = -cachedOneSetWidth - firstDiceCenter + (viewPortTransform.rect.width * 0.5f);
+        contentPanelTransform.localPosition = new Vector3(targetPosition,
             contentPanelTransform.localPosition.y,
-            contentPanelTransform.localPosition.z);        // Set the initial selected index to classic
-        currentSelectedIndex = classicIndex >= 0 ? classicIndex : 0;
+            contentPanelTransform.localPosition.z);
+
+        // Set the initial selected index to 0
+        currentSelectedIndex = 0;
 
         // Set initial visual selection after a frame to ensure all UI is ready
         StartCoroutine(SetInitialVisualSelection());
+
+        // Don't enable auto selection until user actually scrolls
     }
 
+    private IEnumerator EnableAutoSelectionAfterDelay()
+    {
+        // Wait for user to actually scroll before enabling auto selection
+        while (!hasUserScrolled)
+        {
+            yield return null;
+        }
+        allowAutoSelection = true;
+        Debug.Log("InfiniteScroll: Auto selection enabled after user scroll");
+    }
     private IEnumerator SetInitialVisualSelection()
     {
         yield return null; // Wait one frame
@@ -96,6 +116,13 @@ public class InfiniteScroll : MonoBehaviour
         {
             isUpdated = false;
             scrollRect.velocity = OldVelocity;
+        }
+
+        // Detect if user has started scrolling
+        if (!hasUserScrolled && (scrollRect.velocity.magnitude > 0.1f || Input.GetMouseButton(0) || Input.touchCount > 0))
+        {
+            hasUserScrolled = true;
+            StartCoroutine(EnableAutoSelectionAfterDelay());
         }
 
         // Use cached values instead of recalculating every frame
@@ -120,8 +147,11 @@ public class InfiniteScroll : MonoBehaviour
             isUpdated = true;
         }
 
-        // Update the currently selected dice based on scroll position
-        UpdateSelectedDice();
+        // Update the currently selected dice based on scroll position (only if auto selection is enabled)
+        if (allowAutoSelection)
+        {
+            UpdateSelectedDice();
+        }
 
         // Handle snap to center functionality
         HandleSnapToCenter();
@@ -143,14 +173,20 @@ public class InfiniteScroll : MonoBehaviour
         float offsetFromFirstItem = localCenter.x - firstItemCenter;
 
         // Calculate which item index we're closest to
-        int closestIndex = Mathf.RoundToInt(offsetFromFirstItem / cachedItemWidth);
+        float exactIndex = offsetFromFirstItem / cachedItemWidth;
+        int closestIndex = Mathf.RoundToInt(exactIndex);
+
+        // Add tolerance to prevent unwanted changes due to small positioning errors
+        float distanceFromCurrentIndex = Mathf.Abs(exactIndex - currentSelectedIndex);
+        float tolerance = 0.3f; // Only change if we're significantly closer to another item
 
         // Wrap the index to stay within the original itemList bounds
         closestIndex = ((closestIndex % itemList.Length) + itemList.Length) % itemList.Length;
 
-        // Update selected dice if it changed
-        if (closestIndex != currentSelectedIndex)
+        // Update selected dice if it changed AND we're significantly closer to the new item
+        if (closestIndex != currentSelectedIndex && distanceFromCurrentIndex > tolerance)
         {
+            Debug.Log($"InfiniteScroll: Selection change from {currentSelectedIndex} to {closestIndex} (distance: {distanceFromCurrentIndex:F2})");
             currentSelectedIndex = closestIndex;
             OnSelectedDiceChanged?.Invoke(currentSelectedIndex);
             UpdateVisualSelection();

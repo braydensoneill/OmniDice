@@ -38,6 +38,9 @@ public class DiceSelectionUI : MonoBehaviour
             removeButton.onClick.AddListener(RemoveSelectedDice);
         }
 
+        // Set initial dice index to 0
+        currentSelectedIndex = 0;
+
         // Initialize UI
         UpdateUI();
     }
@@ -53,6 +56,7 @@ public class DiceSelectionUI : MonoBehaviour
 
     public void OnDiceSelectionChanged(int selectedIndex)
     {
+        Debug.Log($"DiceSelectionUI: Selection changed to index {selectedIndex}");
         currentSelectedIndex = selectedIndex;
         UpdateUI();
     }
@@ -114,21 +118,30 @@ public class DiceSelectionUI : MonoBehaviour
         if (selectedDiceCountText == null) return;
 
         GameObject selectedPrefab = GetSelectedDicePrefab();
+        string selectedDiceName = GetSelectedDiceName();
+
+        Debug.Log($"UpdateSelectedDiceCount: Selected dice = '{selectedDiceName}', Prefab = '{(selectedPrefab != null ? selectedPrefab.name : "NULL")}'");
+
         if (selectedPrefab != null)
         {
-            // Find the matching dice type and get its count
+            // Find the matching dice type and get its count directly from DiceSpawnManager
             var diceType = diceSpawnManager.diceTypes.Find(t => t.prefab == selectedPrefab);
-            if (diceType != null && diceType.countText != null)
+            if (diceType != null)
             {
-                selectedDiceCountText.text = diceType.countText.text;
+                // Get the count directly from the spawn manager
+                int count = diceSpawnManager.GetDiceCount(diceType);
+                Debug.Log($"UpdateSelectedDiceCount: Found dice type '{diceType.name}', count = {count}");
+                selectedDiceCountText.text = count.ToString();
             }
             else
             {
+                Debug.Log("UpdateSelectedDiceCount: No matching dice type found");
                 selectedDiceCountText.text = "0";
             }
         }
         else
         {
+            Debug.Log("UpdateSelectedDiceCount: No selected prefab");
             selectedDiceCountText.text = "0";
         }
     }

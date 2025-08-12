@@ -14,6 +14,7 @@ public class DiceSpawnManager : MonoBehaviour
 {
     [Header("External References")]
     public ShakeManager shakeManager;
+    public DiceSelectionUI diceSelectionUI;
 
     [Header("Dice Types")]
     public List<DiceType> diceTypes;
@@ -78,6 +79,10 @@ public class DiceSpawnManager : MonoBehaviour
         UpdateDiceCountText(type);
         UpdateTotalDiceCount();
 
+        // Notify DiceSelectionUI to refresh
+        if (diceSelectionUI != null)
+            diceSelectionUI.RefreshUI();
+
         if (shakeManager != null)
             shakeManager.RefreshDiceList();
     }
@@ -98,6 +103,10 @@ public class DiceSpawnManager : MonoBehaviour
         UpdateScaleForAllDice();
         UpdateDiceCountText(type);
         UpdateTotalDiceCount();
+
+        // Notify DiceSelectionUI to refresh
+        if (diceSelectionUI != null)
+            diceSelectionUI.RefreshUI();
 
         if (shakeManager != null)
             shakeManager.RefreshDiceList();
@@ -121,6 +130,10 @@ public class DiceSpawnManager : MonoBehaviour
 
         UpdateScaleForAllDice();
         UpdateTotalDiceCount();
+
+        // Notify DiceSelectionUI to refresh
+        if (diceSelectionUI != null)
+            diceSelectionUI.RefreshUI();
 
         if (shakeManager != null)
             shakeManager.RefreshDiceList();
@@ -178,6 +191,16 @@ public class DiceSpawnManager : MonoBehaviour
         {
             totalDiceCountText.text = totalCount.ToString();
         }
+    }
+
+    // Method to get the count of a specific dice type
+    public int GetDiceCount(DiceType diceType)
+    {
+        if (diceType != null && diceList.ContainsKey(diceType))
+        {
+            return diceList[diceType].Count;
+        }
+        return 0;
     }
 
     // Optional wrappers for Unity UI buttons
