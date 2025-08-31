@@ -5,7 +5,7 @@ using TMPro;
 public class DiceSelectionUI : MonoBehaviour
 {
     [Header("References")]
-    public InfiniteScroll diceSelection;
+    public InfiniteScrollDiceSelection diceSelection;
     public DiceSpawnManager diceSpawnManager;
 
     [Header("UI Elements")]

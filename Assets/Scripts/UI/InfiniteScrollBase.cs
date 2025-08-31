@@ -3,32 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InfiniteScroll : MonoBehaviour
+public abstract class InfiniteScrollBase<T> : MonoBehaviour
 {
+    [Header("Scroll Components")]
     public ScrollRect scrollRect;
     public RectTransform viewPortTransform;
     public RectTransform contentPanelTransform;
     public HorizontalLayoutGroup horizontalLayoutGroup;
-
     public RectTransform[] itemList;
 
     [Header("Selection")]
-    public UnityEngine.Events.UnityEvent<int> OnSelectedDiceChanged;
+    public UnityEngine.Events.UnityEvent<int> OnSelectionChanged;
 
     [Header("Snap to Center")]
-    public float snapDelay = 0.5f; // Delay before snapping starts
-    public float snapSpeed = 2f; // Speed of snap animation
+    public float snapDelay = 0.5f;
+    public float snapSpeed = 2f;
 
     private Coroutine snapCoroutine;
     private bool isSnapping = false;
-    private float lastVelocityMagnitude;
-    private bool wasBeingDragged = false;
     private float originalDecelerationRate;
+    private bool wasBeingDragged = false;
 
-    Vector2 OldVelocity;
-    bool isUpdated;
-    int itemsToAdd;
-    int currentSelectedIndex = 0;
+    protected Vector2 OldVelocity;
+    protected bool isUpdated;
+    protected int currentSelectedIndex = 0;
 
     // Cache frequently used calculations
     private float cachedItemWidth;
@@ -37,25 +35,27 @@ public class InfiniteScroll : MonoBehaviour
 
     // Prevent automatic selection changes during startup
     private bool allowAutoSelection = false;
-    private bool hasUserScrolled = false;    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private bool hasUserScrolled = false;
+
+    protected virtual void Start()
     {
         isUpdated = false;
         OldVelocity = Vector2.zero;
-
-        // Store the original deceleration rate
         originalDecelerationRate = scrollRect.decelerationRate;
 
-        // Cache these calculations once
+        // Cache calculations
         cachedItemWidth = itemList[0].rect.width + horizontalLayoutGroup.spacing;
         cachedOneSetWidth = itemList.Length * cachedItemWidth;
-        cachedStartPosition = -cachedOneSetWidth; // Position of middle set
+        cachedStartPosition = -cachedOneSetWidth;
 
-        // Simple approach: create 3 sets of items
-        // [Set 1] [Set 2] [Set 3]
-        // Start viewing Set 2, can scroll to Set 1 or Set 3, then loop
+        CreateScrollSets();
+        SetInitialPosition();
+        StartCoroutine(SetInitialVisualSelection());
+    }
 
-        // Create three complete sets
+    private void CreateScrollSets()
+    {
+        // Create three complete sets for infinite scrolling
         for (int set = 0; set < 3; set++)
         {
             for (int i = 0; i < itemList.Length; i++)
@@ -64,53 +64,26 @@ public class InfiniteScroll : MonoBehaviour
                 rectTransform.SetAsLastSibling();
             }
         }
+    }
 
-        // Position to start viewing the middle set (Set 2)
-
-        // Find the index of 'classic' to center it initially
-        int classicIndex = -1;
-        for (int i = 0; i < itemList.Length; i++)
-        {
-            if (itemList[i].name.ToLower().Contains("classic"))
-            {
-                classicIndex = i;
-                break;
-            }
-        }
-
-        // Position content so the first dice (index 0) is perfectly centered
-        // We need to account for the item's center position, not just its left edge
-        float firstDiceCenter = cachedItemWidth * 0.5f; // Center of the first item
-        float targetPosition = -cachedOneSetWidth - firstDiceCenter + (viewPortTransform.rect.width * 0.5f);
+    protected virtual void SetInitialPosition()
+    {
+        // Position content so the first item is centered
+        float firstItemCenter = cachedItemWidth * 0.5f;
+        float targetPosition = -cachedOneSetWidth - firstItemCenter + (viewPortTransform.rect.width * 0.5f);
         contentPanelTransform.localPosition = new Vector3(targetPosition,
             contentPanelTransform.localPosition.y,
             contentPanelTransform.localPosition.z);
-
-        // Set the initial selected index to 0
         currentSelectedIndex = 0;
-
-        // Set initial visual selection after a frame to ensure all UI is ready
-        StartCoroutine(SetInitialVisualSelection());
-
-        // Don't enable auto selection until user actually scrolls
     }
 
-    private IEnumerator EnableAutoSelectionAfterDelay()
-    {
-        // Wait for user to actually scroll before enabling auto selection
-        while (!hasUserScrolled)
-        {
-            yield return null;
-        }
-        allowAutoSelection = true;
-        Debug.Log("InfiniteScroll: Auto selection enabled after user scroll");
-    }
     private IEnumerator SetInitialVisualSelection()
     {
-        yield return null; // Wait one frame
+        yield return null;
         UpdateVisualSelection();
-    }    // Update is called once per frame
-    void Update()
+    }
+
+    protected virtual void Update()
     {
         if (isUpdated)
         {
@@ -118,18 +91,29 @@ public class InfiniteScroll : MonoBehaviour
             scrollRect.velocity = OldVelocity;
         }
 
-        // Detect if user has started scrolling
+        DetectUserScrolling();
+        HandleInfiniteLoop();
+
+        if (allowAutoSelection)
+        {
+            UpdateSelectedItem();
+        }
+
+        HandleSnapToCenter();
+    }
+
+    private void DetectUserScrolling()
+    {
         if (!hasUserScrolled && (scrollRect.velocity.magnitude > 0.1f || Input.GetMouseButton(0) || Input.touchCount > 0))
         {
             hasUserScrolled = true;
             StartCoroutine(EnableAutoSelectionAfterDelay());
         }
+    }
 
-        // Use cached values instead of recalculating every frame
-
-        // Simple boundaries: if we scroll one complete set away from center, loop back
-
-        // Right boundary - scrolled past Set 3 into empty space
+    private void HandleInfiniteLoop()
+    {
+        // Right boundary
         if (contentPanelTransform.localPosition.x > cachedStartPosition + cachedOneSetWidth * 0.5f)
         {
             Canvas.ForceUpdateCanvases();
@@ -138,7 +122,7 @@ public class InfiniteScroll : MonoBehaviour
             isUpdated = true;
         }
 
-        // Left boundary - scrolled past Set 1 into empty space
+        // Left boundary
         if (contentPanelTransform.localPosition.x < cachedStartPosition - cachedOneSetWidth * 0.5f)
         {
             Canvas.ForceUpdateCanvases();
@@ -146,98 +130,72 @@ public class InfiniteScroll : MonoBehaviour
             contentPanelTransform.localPosition += new Vector3(cachedOneSetWidth, 0, 0);
             isUpdated = true;
         }
-
-        // Update the currently selected dice based on scroll position (only if auto selection is enabled)
-        if (allowAutoSelection)
-        {
-            UpdateSelectedDice();
-        }
-
-        // Handle snap to center functionality
-        HandleSnapToCenter();
     }
-    void UpdateSelectedDice()
+
+    private IEnumerator EnableAutoSelectionAfterDelay()
     {
-        // Use cached item width instead of recalculating
+        while (!hasUserScrolled)
+        {
+            yield return null;
+        }
+        allowAutoSelection = true;
+    }
 
-        // Calculate the center of the viewport in world space
-        // Use the actual center of the viewport, not the left edge
+    private void UpdateSelectedItem()
+    {
         Vector3 viewportCenter = viewPortTransform.TransformPoint(new Vector3(viewPortTransform.rect.width * 0.5f, 0, 0));
-
-        // Convert to local space of the content panel
         Vector3 localCenter = contentPanelTransform.InverseTransformPoint(viewportCenter);
 
-        // Find which item is closest to the center
-        // We need to account for the fact that items start at x = 0 in the content panel
-        float firstItemCenter = cachedItemWidth * 0.5f; // Center of the first item
+        float firstItemCenter = cachedItemWidth * 0.5f;
         float offsetFromFirstItem = localCenter.x - firstItemCenter;
-
-        // Calculate which item index we're closest to
         float exactIndex = offsetFromFirstItem / cachedItemWidth;
         int closestIndex = Mathf.RoundToInt(exactIndex);
 
-        // Add tolerance to prevent unwanted changes due to small positioning errors
         float distanceFromCurrentIndex = Mathf.Abs(exactIndex - currentSelectedIndex);
-        float tolerance = 0.3f; // Only change if we're significantly closer to another item
+        float tolerance = 0.3f;
 
-        // Wrap the index to stay within the original itemList bounds
         closestIndex = ((closestIndex % itemList.Length) + itemList.Length) % itemList.Length;
 
-        // Update selected dice if it changed AND we're significantly closer to the new item
         if (closestIndex != currentSelectedIndex && distanceFromCurrentIndex > tolerance)
         {
-            Debug.Log($"InfiniteScroll: Selection change from {currentSelectedIndex} to {closestIndex} (distance: {distanceFromCurrentIndex:F2})");
             currentSelectedIndex = closestIndex;
-            OnSelectedDiceChanged?.Invoke(currentSelectedIndex);
+            OnSelectionChanged?.Invoke(currentSelectedIndex);
+            OnItemSelected(currentSelectedIndex);
             UpdateVisualSelection();
         }
     }
 
-    private void UpdateVisualSelection()
+    protected virtual void UpdateVisualSelection()
     {
-        // Update all UI elements to show which one is selected
         for (int i = 0; i < contentPanelTransform.childCount; i++)
         {
             Transform child = contentPanelTransform.GetChild(i);
             CanvasGroup canvasGroup = child.GetComponent<CanvasGroup>();
 
-            // Add CanvasGroup if it doesn't exist
             if (canvasGroup == null)
             {
                 canvasGroup = child.gameObject.AddComponent<CanvasGroup>();
             }
 
-            // Get the dice type name for this child
-            string childDiceName = child.name.Replace("(Clone)", "").Trim();
-            string selectedDiceName = GetSelectedDiceName();
+            string childName = GetChildItemName(child);
+            string selectedName = GetSelectedItemName();
 
-            // Make selected dice fully opaque, others semi-transparent
-            if (childDiceName.Equals(selectedDiceName, System.StringComparison.OrdinalIgnoreCase))
-            {
-                canvasGroup.alpha = 1.0f; // Fully opaque
-            }
-            else
-            {
-                canvasGroup.alpha = 0.5f; // Semi-transparent
-            }
+            canvasGroup.alpha = childName.Equals(selectedName, System.StringComparison.OrdinalIgnoreCase) ? 1.0f : 0.5f;
         }
     }
 
     private void HandleSnapToCenter()
     {
-        // Don't interfere if already snapping
         if (isSnapping) return;
 
         bool currentlyBeingDragged = scrollRect.velocity.magnitude > 0.01f || Input.GetMouseButton(0) || (Input.touchCount > 0);
 
-        // If user is actively dragging, cancel any pending snap
         if (currentlyBeingDragged)
         {
             if (snapCoroutine != null)
             {
                 StopCoroutine(snapCoroutine);
                 snapCoroutine = null;
-                // Restore original deceleration rate if it was modified
                 if (isSnapping)
                 {
                     scrollRect.decelerationRate = originalDecelerationRate;
@@ -248,10 +206,8 @@ public class InfiniteScroll : MonoBehaviour
             return;
         }
 
-        // Check if we just stopped dragging (was dragging, now not dragging)
         if (wasBeingDragged && !currentlyBeingDragged)
         {
-            // Start snap with delay
             if (snapCoroutine == null)
             {
                 snapCoroutine = StartCoroutine(SnapToCenterAfterDelay());
@@ -262,9 +218,6 @@ public class InfiniteScroll : MonoBehaviour
 
     private IEnumerator SnapToCenterAfterDelay()
     {
-        // No delay - snap immediately
-
-        // Check if user started dragging again
         if (Input.GetMouseButton(0) || Input.touchCount > 0)
         {
             snapCoroutine = null;
@@ -272,25 +225,19 @@ public class InfiniteScroll : MonoBehaviour
         }
 
         isSnapping = true;
-
-        // Now disable deceleration and snap
         scrollRect.decelerationRate = 0f;
         scrollRect.velocity = Vector2.zero;
 
-        // Find the UI element that's currently closest to the center of the viewport
         float halfViewportWidth = viewPortTransform.rect.width * 0.5f;
         Vector3 viewportCenterWorld = viewPortTransform.TransformPoint(new Vector3(halfViewportWidth, 0, 0));
 
         Transform closestItem = null;
         float minDistance = float.MaxValue;
 
-        // Check all children in the content panel to find the one closest to center
         for (int i = 0; i < contentPanelTransform.childCount; i++)
         {
             Transform child = contentPanelTransform.GetChild(i);
             RectTransform childRect = child as RectTransform;
-
-            // Calculate the center of this UI element
             Vector3 childCenterWorld = child.TransformPoint(childRect.rect.center);
             float distance = Mathf.Abs(childCenterWorld.x - viewportCenterWorld.x);
 
@@ -308,12 +255,10 @@ public class InfiniteScroll : MonoBehaviour
             yield break;
         }
 
-        // Calculate the offset needed to center this closest item
         RectTransform closestItemRect = closestItem as RectTransform;
         Vector3 closestItemCenterWorld = closestItem.TransformPoint(closestItemRect.rect.center);
         float offsetNeeded = closestItemCenterWorld.x - viewportCenterWorld.x;
 
-        // Apply this offset to the current content position
         Vector3 targetPosition = new Vector3(contentPanelTransform.localPosition.x - offsetNeeded,
                                            contentPanelTransform.localPosition.y,
                                            contentPanelTransform.localPosition.z);
@@ -323,12 +268,10 @@ public class InfiniteScroll : MonoBehaviour
 
         while (journey <= 1f && isSnapping)
         {
-            // Stop if user starts dragging again
             if (Input.GetMouseButton(0) || Input.touchCount > 0)
             {
                 isSnapping = false;
                 snapCoroutine = null;
-                // Restore original deceleration rate
                 scrollRect.decelerationRate = originalDecelerationRate;
                 yield break;
             }
@@ -346,24 +289,22 @@ public class InfiniteScroll : MonoBehaviour
 
         isSnapping = false;
         snapCoroutine = null;
-
-        // Restore original deceleration rate
         scrollRect.decelerationRate = originalDecelerationRate;
     }
 
-    // Public method to get the currently selected dice index
-    public int GetSelectedDiceIndex()
-    {
-        return currentSelectedIndex;
-    }
-
-    // Public method to get the currently selected dice name (assuming itemList has names)
-    public string GetSelectedDiceName()
+    // Public accessors
+    public int GetSelectedIndex() => currentSelectedIndex;
+    public string GetSelectedItemName()
     {
         if (itemList != null && itemList.Length > 0 && currentSelectedIndex >= 0 && currentSelectedIndex < itemList.Length)
         {
-            return itemList[currentSelectedIndex].name.Replace("(Clone)", "").Trim();
+            return GetItemName(itemList[currentSelectedIndex]);
         }
         return "";
     }
+
+    // Abstract methods for child classes to implement
+    protected abstract string GetItemName(RectTransform item);
+    protected abstract string GetChildItemName(Transform child);
+    protected abstract void OnItemSelected(int index);
 }
