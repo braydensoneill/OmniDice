@@ -112,7 +112,7 @@ public class DiceSpawnManager : MonoBehaviour
             shakeManager.RefreshDiceList();
     }
 
-    public void RemoveAllDice()
+    public void ClearDice()
     {
         foreach (var type in diceTypes)
         {
