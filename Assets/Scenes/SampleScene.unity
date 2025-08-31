@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 36593330}
   - component: {fileID: 36593329}
   m_Layer: 5
-  m_Name: Dice Name Text
+  m_Name: Skin Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,10 +263,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 131728765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &36593329
 MonoBehaviour:
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -149.64326, y: -23.979614, z: -148.88188, w: -25.806274}
+  m_margin: {x: -489.885, y: -23.979614, z: -489.87756, w: -25.806274}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -510,7 +510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &98245759
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -149.64326, y: -23.979614, z: -148.88188, w: -25.806274}
+  m_margin: {x: -440.13367, y: -23.979614, z: -440.71606, w: -25.806274}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1477,6 +1477,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1669428874}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &257896646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,7 +1558,7 @@ GameObject:
   - component: {fileID: 258750556}
   - component: {fileID: 258750555}
   m_Layer: 5
-  m_Name: Skin2
+  m_Name: ChalkStoneGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2165,7 +2177,7 @@ GameObject:
   - component: {fileID: 315489894}
   - component: {fileID: 315489895}
   m_Layer: 5
-  m_Name: Skin8
+  m_Name: GoldFringedMarbleBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2751,7 +2763,7 @@ GameObject:
   - component: {fileID: 373686520}
   - component: {fileID: 373686519}
   m_Layer: 5
-  m_Name: Dice Name Background
+  m_Name: Skin Name Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2919,6 +2931,7 @@ Transform:
   - {fileID: 955109697}
   - {fileID: 386996550}
   - {fileID: 832575519}
+  - {fileID: 1644680309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &399903323
@@ -2932,7 +2945,7 @@ GameObject:
   - component: {fileID: 399903324}
   - component: {fileID: 399903325}
   m_Layer: 5
-  m_Name: Skin7
+  m_Name: ErodedMarbleBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2955,7 +2968,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2100, y: -150}
+  m_AnchoredPosition: {x: 1750, y: -150}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &399903325
@@ -3653,7 +3666,11 @@ MonoBehaviour:
       m_Calls: []
   snapDelay: 0.5
   snapSpeed: 2
-  defaultSkinName: default
+  defaultSkinName: ChalkStoneWhite
+  skinNameText: {fileID: 36593329}
+  applyButton: {fileID: 1373708141}
+  itemSize: {x: 200, y: 200}
+  textFont: {fileID: 0}
 --- !u!1 &482834263
 GameObject:
   m_ObjectHideFlags: 0
@@ -4019,7 +4036,7 @@ GameObject:
   - component: {fileID: 548109515}
   - component: {fileID: 548109516}
   m_Layer: 5
-  m_Name: Skin3
+  m_Name: ChalkStoneBrown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4433,7 +4450,7 @@ GameObject:
   - component: {fileID: 694863265}
   - component: {fileID: 694863266}
   m_Layer: 5
-  m_Name: Skin1
+  m_Name: ChalkStoneWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4638,7 +4655,7 @@ GameObject:
   - component: {fileID: 726825079}
   - component: {fileID: 726825080}
   m_Layer: 5
-  m_Name: Skin6
+  m_Name: ChromeMatteWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4661,7 +4678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1750, y: -150}
+  m_AnchoredPosition: {x: 1400, y: -150}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &726825080
@@ -5270,7 +5287,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apply
+  m_text: 'APPLY
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6434,7 +6453,7 @@ GameObject:
   - component: {fileID: 1048086190}
   - component: {fileID: 1048086191}
   m_Layer: 5
-  m_Name: Skin5
+  m_Name: ChromeDamagedWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6457,7 +6476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1400, y: -150}
+  m_AnchoredPosition: {x: 1050, y: -150}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1048086191
@@ -7289,7 +7308,7 @@ GameObject:
   - component: {fileID: 1237707097}
   - component: {fileID: 1237707098}
   m_Layer: 5
-  m_Name: Skin4
+  m_Name: BlackGlossRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7312,7 +7331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1050, y: -150}
+  m_AnchoredPosition: {x: 2100, y: -150}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1237707098
@@ -8201,7 +8220,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1373708142}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 465765007}
+        m_TargetAssemblyTypeName: InfiniteScrollSkinSelection, Assembly-CSharp
+        m_MethodName: ApplySkin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1373708142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8215,7 +8246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.49019608, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8415,10 +8446,10 @@ RectTransform:
   - {fileID: 694863265}
   - {fileID: 258750554}
   - {fileID: 548109515}
-  - {fileID: 1237707097}
   - {fileID: 1048086190}
   - {fileID: 726825079}
   - {fileID: 399903324}
+  - {fileID: 1237707097}
   - {fileID: 315489894}
   - {fileID: 1612427384}
   m_Father: {fileID: 1080885587}
@@ -9385,7 +9416,7 @@ GameObject:
   - component: {fileID: 1612427384}
   - component: {fileID: 1612427385}
   m_Layer: 5
-  m_Name: Skin9
+  m_Name: WhiteOnBlackMatte
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9501,6 +9532,62 @@ Transform:
   - {fileID: 1436651603}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1644680308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644680309}
+  - component: {fileID: 1644680310}
+  m_Layer: 0
+  m_Name: Skin Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1644680309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644680308}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 393879284}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1644680310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644680308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c75c2030b700184caae184cdd08732d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinsPath: Assets/Data/Skins
+  diceTypes:
+  - Classic
+  - D2
+  - D3
+  - D4
+  - D6
+  - D8
+  - D10
+  - D10-00
+  - D12
+  - D20
 --- !u!1 &1660857151
 GameObject:
   m_ObjectHideFlags: 0
@@ -9574,7 +9661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1669428875
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9744,7 +9831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 0.19607843}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.19607843}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9969,7 +10056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 0.19607843}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.19607843}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10194,7 +10281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.19607843}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.19607843}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
