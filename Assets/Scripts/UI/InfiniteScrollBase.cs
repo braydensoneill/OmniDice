@@ -43,6 +43,13 @@ public abstract class InfiniteScrollBase<T> : MonoBehaviour
         OldVelocity = Vector2.zero;
         originalDecelerationRate = scrollRect.decelerationRate;
 
+        // Validate itemList before proceeding
+        if (itemList == null || itemList.Length == 0)
+        {
+            Debug.LogError("itemList is empty! Make sure LoadSkinItems() or similar method populates itemList before calling base.Start()");
+            return;
+        }
+
         // Cache calculations
         cachedItemWidth = itemList[0].rect.width + horizontalLayoutGroup.spacing;
         cachedOneSetWidth = itemList.Length * cachedItemWidth;

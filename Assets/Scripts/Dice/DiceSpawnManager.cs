@@ -75,6 +75,12 @@ public class DiceSpawnManager : MonoBehaviour
         GameObject newDice = Instantiate(type.prefab, spawnPosition, Random.rotation, diceParent);
         diceList[type].Add(newDice);
 
+        // Apply current skin to the newly spawned dice with a small delay to ensure full initialization
+        if (SkinManager.Instance != null)
+        {
+            StartCoroutine(ApplySkinAfterDelay(newDice));
+        }
+
         UpdateScaleForAllDice();
         UpdateDiceCountText(type);
         UpdateTotalDiceCount();
@@ -230,5 +236,17 @@ public class DiceSpawnManager : MonoBehaviour
     public void RemoveSelectedDice(int selectedIndex)
     {
         RemoveDiceByIndex(selectedIndex);
+    }
+
+    // Coroutine to apply skin after a small delay to ensure dice is fully initialized
+    private System.Collections.IEnumerator ApplySkinAfterDelay(GameObject diceObject)
+    {
+        // Wait one frame to ensure the dice is fully initialized
+        yield return null;
+        
+        if (diceObject != null && SkinManager.Instance != null)
+        {
+            SkinManager.Instance.ApplySkinToDice(diceObject);
+        }
     }
 }

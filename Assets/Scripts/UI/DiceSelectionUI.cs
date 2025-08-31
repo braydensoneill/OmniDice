@@ -81,7 +81,8 @@ public class DiceSelectionUI : MonoBehaviour
 
     string GetSelectedDiceName()
     {
-        if (diceSelection.itemList != null &&
+        if (diceSelection != null &&
+            diceSelection.itemList != null &&
             currentSelectedIndex >= 0 &&
             currentSelectedIndex < diceSelection.itemList.Length)
         {
@@ -166,6 +167,19 @@ public class DiceSelectionUI : MonoBehaviour
 
     public void AddSelectedDice()
     {
+        // Check if dice selection is properly initialized
+        if (diceSelection == null)
+        {
+            Debug.LogWarning("DiceSelectionUI: diceSelection is null. Make sure you're on the dice selection screen, not the skin selection screen.");
+            return;
+        }
+
+        if (diceSelection.itemList == null)
+        {
+            Debug.LogWarning("DiceSelectionUI: diceSelection.itemList is null. The dice selection may not be properly initialized.");
+            return;
+        }
+
         string selectedDiceName = GetSelectedDiceName();
         GameObject selectedPrefab = GetSelectedDicePrefab();
 
