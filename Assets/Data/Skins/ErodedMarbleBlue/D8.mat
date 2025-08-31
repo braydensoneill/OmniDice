@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6019461261136618723
+--- !u!114 &-801004123456039419
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: D2_ErodedMarbleBlueMaterial
+  m_Name: D8
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -42,11 +42,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: fde4b879e63f7414080ad59f4f66763a, type: 3}
+        m_Texture: {fileID: 2800000, guid: bebae58664665cc45ab80c0b76fa3040, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 93b47da634afa8d4aa1cd93a73621b16, type: 3}
+        m_Texture: {fileID: 2800000, guid: 50226920f8f6cfd4aa054a6a9a7f02f1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -66,11 +66,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fde4b879e63f7414080ad59f4f66763a, type: 3}
+        m_Texture: {fileID: 2800000, guid: bebae58664665cc45ab80c0b76fa3040, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 0f0bdb9f47703ea458a6fd6d875dcd0b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6ce0fd50786ba2a458b362face84dbba, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
