@@ -30,8 +30,8 @@ public class ShakeManager : MonoBehaviour
     [SerializeField] private bool useDeviceMotion = true;
     [SerializeField] private float gyroRotationMultiplier = 3.0f;
     [SerializeField] private float accelMoveMultiplier = 0.3f;
-    [SerializeField] private float gyroDeadzone = 0.2f;       // Reduced for better responsiveness
-    [SerializeField] private float accelDeadzone = 0.25f;     // Reduced for better Z-axis detection
+    [SerializeField] private float gyroDeadzone = 0.15f;      // Reduced for better responsiveness
+    [SerializeField] private float accelDeadzone = 0.15f;      // Reduced for better Z-axis detection
 
     [Header("Physics Direction")]
     [SerializeField] private float upwardForceComponent = 0.3f;

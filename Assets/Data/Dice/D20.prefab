@@ -235,6 +235,7 @@ MonoBehaviour:
   _minAngularVelocity: 10
   _maxAngularVelocity: 15
   _nudgeAlongForce: 0
+  _gravityMultiplier: 1
 --- !u!114 &-8617068115859159200
 MonoBehaviour:
   m_ObjectHideFlags: 0

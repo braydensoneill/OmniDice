@@ -51,6 +51,10 @@ namespace InnerDriveStudios.DiceCreator
         )]
         private float _nudgeAlongForce = 10;
 
+        [SerializeField]
+        [Tooltip("Multiplier for gravity effect on this dice. Higher values make dice fall faster.")]
+        private float _gravityMultiplier = 2.0f;
+
         protected override void Awake()
         {
             base.Awake();
@@ -123,6 +127,13 @@ namespace InnerDriveStudios.DiceCreator
 
         public void FixedUpdate()
         {
+            // Apply additional gravity for faster falling
+            if (_gravityMultiplier > 1.0f)
+            {
+                Vector3 additionalGravity = Physics.gravity * (_gravityMultiplier - 1.0f);
+                _rigidbody.AddForce(additionalGravity, ForceMode.Acceleration);
+            }
+
             //the moment our rigidbody falls asleep, check if we are actually done rolling...
             if (_rigidbody.IsSleeping())
             {
