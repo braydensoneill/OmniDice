@@ -215,45 +215,45 @@ public class SkinManager : MonoBehaviour
 
         Debug.Log($"ApplySkinToDice: Found material '{skinMaterial.name}'");
 
-        // Apply material to all renderers in the dice (including children)
-        MeshRenderer[] renderers = diceObject.GetComponentsInChildren<MeshRenderer>();
-
-        if (renderers.Length == 0)
+        MeshRenderer renderer = diceObject.GetComponent<MeshRenderer>();
+        if (renderer == null)
         {
-            Debug.LogWarning($"ApplySkinToDice: No MeshRenderer found on dice '{diceObject.name}' or its children");
+            Debug.LogWarning($"ApplySkinToDice: No MeshRenderer found on dice '{diceObject.name}'");
             return;
         }
 
-        foreach (MeshRenderer renderer in renderers)
-        {
-            // Replace all materials on this renderer with the skin material
-            Material[] materials = new Material[renderer.materials.Length];
-            for (int i = 0; i < materials.Length; i++)
-            {
-                materials[i] = skinMaterial;
-            }
-            renderer.materials = materials;
-
-            Debug.Log($"Applied skin material to renderer on '{renderer.gameObject.name}'");
-        }
-
-        Debug.Log($"Applied current skin '{currentSelectedSkin}' material '{skinMaterial.name}' to dice: {diceObject.name} ({renderers.Length} renderers updated)");
+        renderer.material = skinMaterial;
+        Debug.Log($"Applied current skin '{currentSelectedSkin}' material '{skinMaterial.name}' to dice: {diceObject.name}");
     }
+
     private string GetDiceTypeFromName(string gameObjectName)
     {
         // Extract dice type from GameObject name (handles names like "D6(Clone)", "Classic", etc.)
         string cleanName = gameObjectName.Replace("(Clone)", "").Trim();
+        Debug.Log($"GetDiceTypeFromName: Original name '{gameObjectName}' → Clean name '{cleanName}'");
 
-        // Check against known dice types
-        foreach (string diceType in diceTypes)
+        // Sort dice types by length (longest first) to avoid partial matches
+        var sortedDiceTypes = new List<string>(diceTypes);
+        sortedDiceTypes.Sort((a, b) => b.Length.CompareTo(a.Length));
+
+        Debug.Log($"GetDiceTypeFromName: Checking against sorted types: [{string.Join(", ", sortedDiceTypes)}]");
+
+        // Check against known dice types (longest matches first)
+        foreach (string diceType in sortedDiceTypes)
         {
-            if (cleanName.Equals(diceType, System.StringComparison.OrdinalIgnoreCase) ||
-                cleanName.StartsWith(diceType, System.StringComparison.OrdinalIgnoreCase))
+            bool exactMatch = cleanName.Equals(diceType, System.StringComparison.OrdinalIgnoreCase);
+            bool startsWithMatch = cleanName.StartsWith(diceType, System.StringComparison.OrdinalIgnoreCase);
+
+            Debug.Log($"GetDiceTypeFromName: Testing '{diceType}' → Exact: {exactMatch}, StartsWith: {startsWithMatch}");
+
+            if (exactMatch || startsWithMatch)
             {
+                Debug.Log($"GetDiceTypeFromName: MATCHED! Returning '{diceType}'");
                 return diceType;
             }
         }
 
+        Debug.LogWarning($"GetDiceTypeFromName: No match found for '{cleanName}'");
         return null;
     }
 

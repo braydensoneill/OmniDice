@@ -40,7 +40,8 @@ public class ShakeManager : MonoBehaviour
     [Header("Direct Movement")]
     [SerializeField] private float directMovementMultiplier = 1.0f;    // How strongly phone movement affects dice
     [SerializeField] private float minimumUpwardForce = 0.2f;          // Minimum upward force to overcome gravity
-    [SerializeField] private float zNegativeMultiplier = 1.5f;         // Makes Z- movement easier than Z+ (1.0 = equal, >1.0 = easier Z-)
+    [SerializeField] private float zNegativeMultiplier = 2.0f;         // Makes Z- movement (toward camera) easier than Z+ (away from camera)
+    [SerializeField] private float zPositiveMultiplier = 0.5f;         // Reduces Z+ movement (away from camera)
 
     [Header("Natural Feel")]
     [SerializeField] private float intensitySmoothing = 0.8f;          // How much previous intensity affects current (0-1)
@@ -185,9 +186,13 @@ public class ShakeManager : MonoBehaviour
             float zFromAccel = -debugAcceleration.z * multiplier;
 
             // Apply bias to make Z- movement easier than Z+
-            if (zFromAccel > 0) // Z- movement (negative acceleration becomes positive force)
+            if (zFromAccel < 0) // Z- movement (toward camera)
             {
-                zFromAccel *= zNegativeMultiplier;
+                zFromAccel *= zNegativeMultiplier; // 2x boost toward camera
+            }
+            else if (zFromAccel > 0) // Z+ movement (away from camera)
+            {
+                zFromAccel *= zPositiveMultiplier; // 0.5x reduction away from camera
             }
 
             shakeForce.z = zFromAccel;
@@ -196,14 +201,22 @@ public class ShakeManager : MonoBehaviour
             float zFromY = 0f;
             if (Mathf.Abs(debugAcceleration.z) < zAxisPriorityThreshold)
             {
-                // Use Y-axis for Z control when no significant Z movement
-                zFromY = -debugAcceleration.y * multiplier * yToZStrengthMultiplier;
-
-                // Apply bias to make Z- movement easier than Z+
-                if (zFromY > 0) // Z- movement
+                // Only use upward Y movement for Z control (tilting phone up)
+                if (debugAcceleration.y > 0) // Only when tilting up
                 {
-                    zFromY *= zNegativeMultiplier;
+                    zFromY = -debugAcceleration.y * multiplier * yToZStrengthMultiplier;
+
+                    // Apply bias to make Z- movement easier than Z+
+                    if (zFromY < 0) // Z- movement (toward camera)
+                    {
+                        zFromY *= zNegativeMultiplier; // 2x boost toward camera
+                    }
+                    else if (zFromY > 0) // Z+ movement (away from camera)
+                    {
+                        zFromY *= zPositiveMultiplier; // 0.5x reduction away from camera
+                    }
                 }
+                // Ignore downward Y movement (tilting phone down) for now
 
                 shakeForce.z += zFromY;
             }

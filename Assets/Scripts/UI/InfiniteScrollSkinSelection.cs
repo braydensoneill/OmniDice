@@ -223,10 +223,14 @@ public class InfiniteScrollSkinSelection : InfiniteScrollBase<string>
         // Extract dice type from GameObject name (handles names like "D6(Clone)", "Classic", etc.)
         string cleanName = gameObjectName.Replace("(Clone)", "").Trim();
 
-        // Check against known dice types
+        // Check against known dice types (sorted by length to avoid partial matches)
         string[] knownDiceTypes = { "Classic", "D2", "D3", "D4", "D6", "D8", "D10", "D10-00", "D12", "D20" };
 
-        foreach (string diceType in knownDiceTypes)
+        // Sort by length (longest first) to avoid D2 matching D20, D10 matching D10-00
+        var sortedDiceTypes = new List<string>(knownDiceTypes);
+        sortedDiceTypes.Sort((a, b) => b.Length.CompareTo(a.Length));
+
+        foreach (string diceType in sortedDiceTypes)
         {
             if (cleanName.Equals(diceType, System.StringComparison.OrdinalIgnoreCase) ||
                 cleanName.StartsWith(diceType, System.StringComparison.OrdinalIgnoreCase))
