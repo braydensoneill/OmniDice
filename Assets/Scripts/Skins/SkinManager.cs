@@ -20,7 +20,7 @@ public class SkinManager : MonoBehaviour
 
     void Awake()
     {
-        PlayerPrefs.DeleteAll(); // Clear PlayerPrefs for testing purposes only
+        // PRODUCTION VERSION - PlayerPrefs deletion removed
 
         if (Instance == null)
         {
@@ -49,11 +49,23 @@ public class SkinManager : MonoBehaviour
     void Start()
     {
         LoadAvailableSkins();
+
+        // Subscribe to real IAP events
+        RealIAPManager.OnPurchaseSuccessEvent += OnSkinPurchased;
+        RealIAPManager.OnPurchaseFailedEvent += OnPurchaseFailedHandler;
     }
 
     void OnDestroy()
     {
-        // Cleanup if needed
+        // Unsubscribe from IAP events
+        RealIAPManager.OnPurchaseSuccessEvent -= OnSkinPurchased;
+        RealIAPManager.OnPurchaseFailedEvent -= OnPurchaseFailedHandler;
+    }
+
+    private void OnPurchaseFailedHandler(string skinName)
+    {
+        Debug.LogError($"[SkinManager] Purchase failed for: {skinName}");
+        // You could show an error message to the user here
     }
 
     private void OnSkinPurchased(string skinName)
@@ -77,31 +89,31 @@ public class SkinManager : MonoBehaviour
             return;
         }
 
-        Debug.Log($"Starting purchase for: {skinName}");
+        Debug.Log($"[SkinManager] Starting real purchase for: {skinName}");
 
-        // Simple purchase simulation - in a real game, this would show Google Pay
-        StartCoroutine(SimulatePurchase(skinName));
+        // Use real Unity IAP system
+        if (RealIAPManager.Instance != null)
+        {
+            RealIAPManager.Instance.PurchaseSkin(skinName);
+        }
+        else
+        {
+            Debug.LogError("[SkinManager] RealIAPManager not found! Make sure it's in the scene.");
+        }
     }
 
     public string GetSkinPrice(string skinName)
     {
-        // Simple flat pricing - you can customize this
+        // Try to get real price from IAP system
         if (skinName == freeSkinName)
             return "FREE";
 
-        return "$0.99";
-    }
+        if (RealIAPManager.Instance != null)
+        {
+            return RealIAPManager.Instance.GetProductPrice(skinName);
+        }
 
-    private System.Collections.IEnumerator SimulatePurchase(string skinName)
-    {
-        Debug.Log($"Processing payment for {skinName}... (This would show Google Pay screen)");
-
-        // Wait 2 seconds to simulate payment processing
-        yield return new WaitForSeconds(2f);
-
-        // Simulate successful purchase
-        Debug.Log($"Payment successful for {skinName}!");
-        OnSkinPurchased(skinName);
+        return "$0.99"; // Fallback
     }
 
     void LoadAvailableSkins()
