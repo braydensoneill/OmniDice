@@ -25,11 +25,15 @@ public class DiceSpawnManager : MonoBehaviour
     public float minScale = 0.2f;
     public float maxScale = 1f;
     public int maxDiceCountForMinScale = 40;
+    [SerializeField] private float scaleCurve = 2.0f; // Higher values = more dramatic early scaling
+    [SerializeField] private float scaleTransitionSpeed = 5.0f; // How fast dice resize (higher = faster)
 
     [Header("UI")]
     public TextMeshProUGUI totalDiceCountText;
 
     private Dictionary<DiceType, List<GameObject>> diceList = new Dictionary<DiceType, List<GameObject>>();
+    private float targetScale = 1.0f; // The scale all dice should lerp towards
+    private Dictionary<GameObject, float> currentScales = new Dictionary<GameObject, float>(); // Track individual dice scales
 
     private void Start()
     {
@@ -63,6 +67,44 @@ public class DiceSpawnManager : MonoBehaviour
         UpdateTotalDiceCount();
     }
 
+    private void Update()
+    {
+        // Smoothly lerp all dice towards target scale
+        var dicesToRemove = new List<GameObject>();
+        var scaleUpdates = new Dictionary<GameObject, float>();
+
+        foreach (var kvp in currentScales)
+        {
+            GameObject dice = kvp.Key;
+            float currentScale = kvp.Value;
+
+            if (dice == null)
+            {
+                dicesToRemove.Add(dice);
+                continue;
+            }
+
+            // Lerp towards target scale
+            float newScale = Mathf.Lerp(currentScale, targetScale, scaleTransitionSpeed * Time.deltaTime);
+            scaleUpdates[dice] = newScale;
+
+            // Apply the lerped scale
+            dice.transform.localScale = Vector3.one * newScale;
+        }
+
+        // Apply all scale updates after iteration
+        foreach (var kvp in scaleUpdates)
+        {
+            currentScales[kvp.Key] = kvp.Value;
+        }
+
+        // Clean up null references
+        foreach (GameObject dice in dicesToRemove)
+        {
+            currentScales.Remove(dice);
+        }
+    }
+
     public void AddDice(GameObject prefab)
     {
         DiceType type = diceTypes.Find(t => t.prefab == prefab);
@@ -75,10 +117,10 @@ public class DiceSpawnManager : MonoBehaviour
         GameObject newDice = Instantiate(type.prefab, spawnPosition, Random.rotation, diceParent);
         diceList[type].Add(newDice);
 
-        // Apply current skin to the newly spawned dice with a small delay to ensure full initialization
+        // Apply current skin to the newly spawned dice
         if (SkinManager.Instance != null)
         {
-            StartCoroutine(ApplySkinAfterDelay(newDice));
+            SkinManager.Instance.ApplySkinToDice(newDice);
         }
 
         UpdateScaleForAllDice();
@@ -153,11 +195,16 @@ public class DiceSpawnManager : MonoBehaviour
             totalCount += diceList[type].Count;
         }
 
-        float t = Mathf.InverseLerp(1, maxDiceCountForMinScale, totalCount);
-        float scale = Mathf.Lerp(maxScale, minScale, t);
-        Vector3 scaleVector = Vector3.one * scale;
+        // Use exponential scaling for more dramatic early changes
+        float normalizedCount = Mathf.InverseLerp(1, maxDiceCountForMinScale, totalCount);
 
-        // Apply scale to all dice in one pass
+        // Apply exponential curve - higher scaleCurve = more dramatic early scaling
+        float exponentialT = Mathf.Pow(normalizedCount, 1.0f / scaleCurve);
+
+        // Calculate target scale but don't apply it immediately
+        targetScale = Mathf.Lerp(maxScale, minScale, exponentialT);
+
+        // Initialize current scales for new dice
         foreach (var type in diceTypes)
         {
             var diceTypeList = diceList[type];
@@ -166,7 +213,11 @@ public class DiceSpawnManager : MonoBehaviour
                 GameObject dice = diceTypeList[i];
                 if (dice != null)
                 {
-                    dice.transform.localScale = scaleVector;
+                    // Initialize scale tracking for new dice
+                    if (!currentScales.ContainsKey(dice))
+                    {
+                        currentScales[dice] = dice.transform.localScale.x;
+                    }
                 }
                 else
                 {
@@ -236,17 +287,5 @@ public class DiceSpawnManager : MonoBehaviour
     public void RemoveSelectedDice(int selectedIndex)
     {
         RemoveDiceByIndex(selectedIndex);
-    }
-
-    // Coroutine to apply skin after a small delay to ensure dice is fully initialized
-    private System.Collections.IEnumerator ApplySkinAfterDelay(GameObject diceObject)
-    {
-        // Wait one frame to ensure the dice is fully initialized
-        yield return null;
-        
-        if (diceObject != null && SkinManager.Instance != null)
-        {
-            SkinManager.Instance.ApplySkinToDice(diceObject);
-        }
     }
 }

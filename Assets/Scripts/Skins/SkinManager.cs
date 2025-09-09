@@ -1,29 +1,44 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 public class SkinManager : MonoBehaviour
 {
     [Header("Skin Settings")]
     public string skinsPath = "Assets/Resources/Skins";
+    public string freeSkinName = "Chalk Stone White"; // The only free skin
 
     [Header("Dice Types")]
     public string[] diceTypes = { "Classic", "D2", "D3", "D4", "D6", "D8", "D10", "D10-00", "D12", "D20" };
 
     private List<SkinData> availableSkins = new List<SkinData>();
     private string currentSelectedSkin = "default";
+    private HashSet<string> ownedSkins = new HashSet<string>(); // Track owned skins
 
     public static SkinManager Instance { get; private set; }
 
     void Awake()
     {
+        PlayerPrefs.DeleteAll(); // Clear PlayerPrefs for testing purposes only
+
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
+            // Load owned skins from PlayerPrefs
+            LoadOwnedSkins();
+
             // Load the current skin from PlayerPrefs on startup
-            currentSelectedSkin = PlayerPrefs.GetString("SelectedSkin", "default");
+            currentSelectedSkin = PlayerPrefs.GetString("SelectedSkin", freeSkinName);
+
+            // Ensure the current skin is owned, if not, reset to free skin
+            if (!IsOwned(currentSelectedSkin))
+            {
+                currentSelectedSkin = freeSkinName;
+                PlayerPrefs.SetString("SelectedSkin", freeSkinName);
+            }
         }
         else
         {
@@ -34,6 +49,59 @@ public class SkinManager : MonoBehaviour
     void Start()
     {
         LoadAvailableSkins();
+    }
+
+    void OnDestroy()
+    {
+        // Cleanup if needed
+    }
+
+    private void OnSkinPurchased(string skinName)
+    {
+        Debug.Log($"Skin purchased: {skinName}");
+
+        // Unlock the skin
+        UnlockSkin(skinName);
+
+        // Auto-apply the purchased skin
+        SetCurrentSkin(skinName);
+
+        Debug.Log($"Skin '{skinName}' unlocked and applied!");
+    }
+
+    public void PurchaseSkin(string skinName)
+    {
+        if (IsOwned(skinName))
+        {
+            Debug.Log($"Skin '{skinName}' is already owned");
+            return;
+        }
+
+        Debug.Log($"Starting purchase for: {skinName}");
+
+        // Simple purchase simulation - in a real game, this would show Google Pay
+        StartCoroutine(SimulatePurchase(skinName));
+    }
+
+    public string GetSkinPrice(string skinName)
+    {
+        // Simple flat pricing - you can customize this
+        if (skinName == freeSkinName)
+            return "FREE";
+
+        return "$0.99";
+    }
+
+    private System.Collections.IEnumerator SimulatePurchase(string skinName)
+    {
+        Debug.Log($"Processing payment for {skinName}... (This would show Google Pay screen)");
+
+        // Wait 2 seconds to simulate payment processing
+        yield return new WaitForSeconds(2f);
+
+        // Simulate successful purchase
+        Debug.Log($"Payment successful for {skinName}!");
+        OnSkinPurchased(skinName);
     }
 
     void LoadAvailableSkins()
@@ -126,6 +194,13 @@ public class SkinManager : MonoBehaviour
         SkinData skin = GetSkinByName(skinName);
         if (skin != null)
         {
+            // Check if the skin is owned before allowing selection
+            if (!IsOwned(skinName))
+            {
+                Debug.LogWarning($"Cannot set skin '{skinName}' - not owned by player");
+                return;
+            }
+
             currentSelectedSkin = skinName;
 
             // Save to PlayerPrefs for persistence
@@ -142,6 +217,96 @@ public class SkinManager : MonoBehaviour
             Debug.LogWarning($"Attempted to set invalid skin: {skinName}");
         }
     }
+
+    // === OWNERSHIP MANAGEMENT ===
+
+    private void LoadOwnedSkins()
+    {
+        // Clear existing owned skins
+        ownedSkins.Clear();
+
+        // Always own the free skin
+        ownedSkins.Add(freeSkinName);
+
+        // Load purchased skins from PlayerPrefs
+        string ownedSkinsString = PlayerPrefs.GetString("OwnedSkins", "");
+        if (!string.IsNullOrEmpty(ownedSkinsString))
+        {
+            string[] skinNames = ownedSkinsString.Split(',');
+            foreach (string skinName in skinNames)
+            {
+                string trimmedName = skinName.Trim();
+                if (!string.IsNullOrEmpty(trimmedName))
+                {
+                    ownedSkins.Add(trimmedName);
+                }
+            }
+        }
+
+        Debug.Log($"Loaded owned skins: {string.Join(", ", ownedSkins)}");
+    }
+
+    public bool IsOwned(string skinName)
+    {
+        return ownedSkins.Contains(skinName);
+    }
+
+    public void UnlockSkin(string skinName)
+    {
+        if (!ownedSkins.Contains(skinName))
+        {
+            ownedSkins.Add(skinName);
+            SaveOwnedSkins();
+            Debug.Log($"Unlocked skin: {skinName}");
+
+            // Notify UI that a skin was unlocked
+            OnSkinUnlocked?.Invoke(skinName);
+        }
+    }
+
+    public void LockSkin(string skinName)
+    {
+        // Cannot lock the free skin
+        if (skinName == freeSkinName)
+        {
+            Debug.LogWarning($"Cannot lock free skin: {freeSkinName}");
+            return;
+        }
+
+        if (ownedSkins.Contains(skinName))
+        {
+            ownedSkins.Remove(skinName);
+            SaveOwnedSkins();
+
+            // If current skin was locked, switch to free skin
+            if (currentSelectedSkin == skinName)
+            {
+                SetCurrentSkin(freeSkinName);
+            }
+
+            Debug.Log($"Locked skin: {skinName}");
+        }
+    }
+
+    private void SaveOwnedSkins()
+    {
+        List<string> skinList = new List<string>(ownedSkins);
+        string ownedSkinsString = string.Join(",", skinList);
+        PlayerPrefs.SetString("OwnedSkins", ownedSkinsString);
+        PlayerPrefs.Save();
+    }
+
+    public List<string> GetOwnedSkins()
+    {
+        return new List<string>(ownedSkins);
+    }
+
+    public int GetOwnedSkinsCount()
+    {
+        return ownedSkins.Count;
+    }
+
+    // === END OWNERSHIP MANAGEMENT ===
 
     public string GetCurrentSkin()
     {
@@ -259,6 +424,9 @@ public class SkinManager : MonoBehaviour
 
     // Event for when skin changes (other systems can subscribe to this)
     public System.Action<string> OnSkinChanged;
+
+    // Event for when skin is unlocked/purchased (UI can subscribe to this)
+    public System.Action<string> OnSkinUnlocked;
 
     // Refresh/reload all skins
     public void RefreshSkins()

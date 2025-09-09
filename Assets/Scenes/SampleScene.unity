@@ -3592,6 +3592,10 @@ MonoBehaviour:
   defaultSkinName: ChalkStoneWhite
   skinNameText: {fileID: 36593329}
   applyButton: {fileID: 1373708141}
+  purchaseButton: {fileID: 0}
+  skinStatusText: {fileID: 0}
+  ownedButtonColor: {r: 1, g: 0.5, b: 0, a: 1}
+  purchaseButtonColor: {r: 0, g: 0.8, b: 0, a: 1}
   itemSize: {x: 200, y: 200}
   textFont: {fileID: 0}
 --- !u!1 &482834263
@@ -5919,6 +5923,8 @@ MonoBehaviour:
   minScale: 0.2
   maxScale: 1
   maxDiceCountForMinScale: 40
+  scaleCurve: 2
+  scaleTransitionSpeed: 5
   totalDiceCountText: {fileID: 1296963643}
 --- !u!4 &955109697
 Transform:
@@ -9500,6 +9506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinsPath: Assets/Data/Skins
+  freeSkinName: Chalk Stone White
   diceTypes:
   - Classic
   - D2

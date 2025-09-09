@@ -11,12 +11,19 @@ public class InfiniteScrollSkinSelection : InfiniteScrollBase<string>
     [Header("UI References")]
     public TextMeshProUGUI skinNameText; // Reference to your "Skin name" TMPro text field
     public Button applyButton; // Reference to your "Apply" button
+    public Button purchaseButton; // Reference to purchase/unlock button
+    public TextMeshProUGUI skinStatusText; // Shows "OWNED" or "LOCKED" or price
+
+    [Header("Button Colors")]
+    public Color ownedButtonColor = new Color(1f, 0.5f, 0f, 1f); // Orange (255/255, 125/255, 0/255, 1)
+    public Color purchaseButtonColor = new Color(0f, 0.8f, 0f, 1f); // Green (0, 225/255, 0, 1)
 
     [Header("Skin Item Settings")]
     public Vector2 itemSize = new Vector2(200, 200); // Size of each skin item
     public Font textFont; // Font for skin name labels (optional)
 
     private List<SkinData> loadedSkins = new List<SkinData>();
+    private string purchaseInProgressSkin = ""; // Track which skin is being purchased
 
     protected override void Start()
     {
@@ -29,10 +36,45 @@ public class InfiniteScrollSkinSelection : InfiniteScrollBase<string>
             applyButton.onClick.AddListener(ApplySkin);
         }
 
+        // Setup the purchase button
+        if (purchaseButton != null)
+        {
+            purchaseButton.onClick.AddListener(PurchaseSkin);
+        }
+
+        // Subscribe to skin changes to update UI when skins are purchased
+        if (SkinManager.Instance != null)
+        {
+            SkinManager.Instance.OnSkinChanged += OnSkinChanged;
+            SkinManager.Instance.OnSkinUnlocked += OnSkinUnlocked;
+        }
+
         // Update UI with initial selection
-        UpdateSkinNameDisplay();
+        UpdateSkinDisplay();
     }
 
+    private void OnSkinChanged(string skinName)
+    {
+        // Update the UI whenever a skin changes (including purchases)
+        Debug.Log($"[UI] OnSkinChanged triggered for: {skinName}");
+        UpdateSkinDisplay();
+    }
+
+    private void OnSkinUnlocked(string skinName)
+    {
+        // Update the UI whenever a skin is unlocked/purchased
+        Debug.Log($"[UI] OnSkinUnlocked triggered for: {skinName}");
+
+        // Clear purchase in progress flag
+        if (purchaseInProgressSkin == skinName)
+        {
+            purchaseInProgressSkin = "";
+            Debug.Log($"[UI] Purchase completed for: {skinName}, clearing purchase flag");
+        }
+
+        UpdateSkinDisplay();
+        Debug.Log($"UI updated: Skin '{skinName}' was unlocked!");
+    }
     private void LoadSkinItems()
     {
         Debug.Log("LoadSkinItems() called");
@@ -107,16 +149,110 @@ public class InfiniteScrollSkinSelection : InfiniteScrollBase<string>
         string selectedSkinName = GetSelectedItemName();
         Debug.Log($"Skin selected: {selectedSkinName} (Index: {index})");
 
-        // Update the skin name display
-        UpdateSkinNameDisplay();
+        // Update the skin display
+        UpdateSkinDisplay();
+    }
+
+    private void UpdateSkinDisplay()
+    {
+        string selectedSkinName = GetSelectedSkinName();
+
+        if (skinNameText != null)
+        {
+            skinNameText.text = selectedSkinName;
+        }
+
+        // Update ownership status and button states
+        bool isOwned = SkinManager.Instance != null && SkinManager.Instance.IsOwned(selectedSkinName);
+
+        // If purchase is in progress for this skin, treat as not owned until purchase completes
+        if (purchaseInProgressSkin == selectedSkinName)
+        {
+            Debug.Log($"[UI] Purchase in progress for {selectedSkinName}, treating as not owned");
+            isOwned = false;
+        }
+
+        Debug.Log($"[UI] UpdateSkinDisplay: Skin '{selectedSkinName}' - IsOwned: {isOwned}");
+
+        // Update status text
+        if (skinStatusText != null)
+        {
+            if (isOwned)
+            {
+                skinStatusText.text = "OWNED";
+            }
+            else
+            {
+                string price = "$0.99"; // Default fallback
+                if (SkinManager.Instance != null)
+                {
+                    price = SkinManager.Instance.GetSkinPrice(selectedSkinName);
+                }
+                skinStatusText.text = $"LOCKED - {price}";
+            }
+        }
+
+        // Update apply button based on ownership
+        if (applyButton != null)
+        {
+            applyButton.interactable = true; // Always interactable now
+
+            // Get button text component
+            TextMeshProUGUI buttonText = applyButton.GetComponentInChildren<TextMeshProUGUI>();
+
+            if (isOwned)
+            {
+                // Owned skin: "Apply" with orange background
+                if (buttonText != null)
+                {
+                    Debug.Log($"[UI] Setting button text to 'Apply' for skin: {selectedSkinName}");
+                    buttonText.text = "Apply";
+                    buttonText.ForceMeshUpdate(); // Force immediate text update
+                }
+
+                // Set orange color
+                ColorBlock colors = applyButton.colors;
+                colors.normalColor = ownedButtonColor;
+                colors.highlightedColor = ownedButtonColor; // Same color for hover
+                colors.pressedColor = ownedButtonColor * 0.8f; // Darker when pressed for feedback
+                colors.selectedColor = ownedButtonColor; // Same color for selected
+                colors.disabledColor = ownedButtonColor * 0.5f; // Dimmed for disabled
+                applyButton.colors = colors;
+                Debug.Log($"[UI] Set button color to ORANGE for owned skin: {selectedSkinName}");
+            }
+            else
+            {
+                // Locked skin: "Purchase" with green background
+                if (buttonText != null)
+                {
+                    Debug.Log($"[UI] Setting button text to 'Purchase' for skin: {selectedSkinName}");
+                    buttonText.text = "Purchase";
+                    buttonText.ForceMeshUpdate(); // Force immediate text update
+                }
+
+                // Set green color
+                ColorBlock colors = applyButton.colors;
+                colors.normalColor = purchaseButtonColor;
+                colors.highlightedColor = purchaseButtonColor; // Same color for hover
+                colors.pressedColor = purchaseButtonColor * 0.8f; // Darker when pressed for feedback
+                colors.selectedColor = purchaseButtonColor; // Same color for selected
+                colors.disabledColor = purchaseButtonColor * 0.5f; // Dimmed for disabled
+                applyButton.colors = colors;
+                Debug.Log($"[UI] Set button color to GREEN for locked skin: {selectedSkinName}");
+            }
+        }
+
+        // Hide the separate purchase button since we're using the apply button for both
+        if (purchaseButton != null)
+        {
+            purchaseButton.gameObject.SetActive(false);
+        }
     }
 
     private void UpdateSkinNameDisplay()
     {
-        if (skinNameText != null)
-        {
-            skinNameText.text = GetSelectedSkinName();
-        }
+        // Legacy method - redirects to new method
+        UpdateSkinDisplay();
     }
 
     public void ApplySkin()
@@ -125,14 +261,66 @@ public class InfiniteScrollSkinSelection : InfiniteScrollBase<string>
 
         if (SkinManager.Instance != null)
         {
-            SkinManager.Instance.SetCurrentSkin(selectedSkinName);
-            Debug.Log($"Applied skin: {selectedSkinName}");
+            // Check if skin is owned
+            if (SkinManager.Instance.IsOwned(selectedSkinName))
+            {
+                // Apply the owned skin
+                SkinManager.Instance.SetCurrentSkin(selectedSkinName);
+                Debug.Log($"Applied skin: {selectedSkinName}");
 
-            // Apply materials to all existing dice in the scene
-            ApplyMaterialsToAllDice(selectedSkinName);
+                // Apply materials to all existing dice in the scene
+                ApplyMaterialsToAllDice(selectedSkinName);
 
-            // Update all dice prefabs with the new skin
-            UpdateDicePrefabsWithSkin(selectedSkinName);
+                // Update all dice prefabs with the new skin
+                UpdateDicePrefabsWithSkin(selectedSkinName);
+            }
+            else
+            {
+                // Trigger purchase for locked skin
+                PurchaseSkin();
+            }
+        }
+    }
+
+    public void PurchaseSkin()
+    {
+        string selectedSkinName = GetSelectedSkinName();
+        Debug.Log($"[UI] PurchaseSkin called for: {selectedSkinName}");
+
+        if (SkinManager.Instance == null)
+        {
+            Debug.LogError("SkinManager not found!");
+            return;
+        }
+
+        if (SkinManager.Instance.IsOwned(selectedSkinName))
+        {
+            Debug.LogWarning($"Skin '{selectedSkinName}' is already owned!");
+            return;
+        }
+
+        // Mark this skin as being purchased (prevents UI updates during purchase)
+        purchaseInProgressSkin = selectedSkinName;
+        Debug.Log($"[UI] Purchase in progress for: {selectedSkinName}");
+
+        // Use real IAP system
+        Debug.Log($"Initiating purchase for skin: {selectedSkinName}");
+        SkinManager.Instance.PurchaseSkin(selectedSkinName);
+
+        // The purchase result will be handled automatically by the OnSkinUnlocked event
+        // which will update the UI when the purchase completes
+    }
+
+    // TEST METHOD - Remove this in production
+    [ContextMenu("Unlock Current Skin (Testing Only)")]
+    public void UnlockCurrentSkinForTesting()
+    {
+        string selectedSkinName = GetSelectedSkinName();
+        if (SkinManager.Instance != null && !SkinManager.Instance.IsOwned(selectedSkinName))
+        {
+            SkinManager.Instance.UnlockSkin(selectedSkinName);
+            UpdateSkinDisplay();
+            Debug.Log($"[TESTING] Unlocked skin: {selectedSkinName}");
         }
     }
 
@@ -256,6 +444,20 @@ public class InfiniteScrollSkinSelection : InfiniteScrollBase<string>
             }
         }
 
+        // If default skin is not owned, try to find the free skin
+        if (SkinManager.Instance != null && !SkinManager.Instance.IsOwned(defaultSkinName))
+        {
+            for (int i = 0; i < itemList.Length; i++)
+            {
+                string skinName = itemList[i].name;
+                if (SkinManager.Instance.IsOwned(skinName))
+                {
+                    currentSelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
         base.SetInitialPosition();
     }
 
@@ -274,6 +476,18 @@ public class InfiniteScrollSkinSelection : InfiniteScrollBase<string>
         if (applyButton != null)
         {
             applyButton.onClick.RemoveListener(ApplySkin);
+        }
+
+        if (purchaseButton != null)
+        {
+            purchaseButton.onClick.RemoveListener(PurchaseSkin);
+        }
+
+        // Unsubscribe from skin changes
+        if (SkinManager.Instance != null)
+        {
+            SkinManager.Instance.OnSkinChanged -= OnSkinChanged;
+            SkinManager.Instance.OnSkinUnlocked -= OnSkinUnlocked;
         }
     }
 }
