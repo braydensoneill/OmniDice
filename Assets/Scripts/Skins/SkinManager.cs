@@ -50,21 +50,29 @@ public class SkinManager : MonoBehaviour
     {
         LoadAvailableSkins();
 
-        // For development: Unlock all skins
-        UnlockAllSkins();
+        // For development: Clear saved data and unlock all skins
+        ClearSkinDataAndUnlockAll(); // TEMPORARY - REMOVE FOR PRODUCTION
 
         // Subscribe to real IAP events
         RealIAPManager.OnPurchaseSuccessEvent += OnSkinPurchased;
         RealIAPManager.OnPurchaseFailedEvent += OnPurchaseFailedHandler;
     }
 
-    private void UnlockAllSkins()
+    private void ClearSkinDataAndUnlockAll()
     {
+        // Clear existing PlayerPrefs data for development
+        PlayerPrefs.DeleteKey("OwnedSkins");
+        PlayerPrefs.Save();
+
+        // Clear the owned skins list and reload
+        ownedSkins.Clear();
+
+        // Unlock all skins
         foreach (var skin in availableSkins)
         {
             UnlockSkin(skin.skinName);
         }
-        Debug.Log("[Development] All skins unlocked for testing");
+        Debug.Log("[Development] Cleared saved data and unlocked all skins for testing");
     }
 
     void OnDestroy()

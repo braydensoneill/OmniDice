@@ -225,6 +225,12 @@ public class DiceSpawnManager : MonoBehaviour
             if (currentClearDiceAnimation != null)
             {
                 StopCoroutine(currentClearDiceAnimation);
+
+                // Reset to original state immediately when interrupted
+                clearDiceParentObject.transform.localScale = Vector3.one;
+                var textComp = clearDiceParentObject.GetComponentInChildren<TextMeshProUGUI>();
+                if (textComp != null)
+                    textComp.alpha = 1f;
             }
 
             // Start new animation
@@ -264,7 +270,7 @@ public class DiceSpawnManager : MonoBehaviour
         }
 
         // Store original values for restoration if interrupted
-        Vector3 originalScale = clearDiceParentObject.transform.localScale;
+        Vector3 originalScale = Vector3.one; // Always use (1,1,1) as baseline
         bool wasActive = clearDiceParentObject.activeSelf;
         float originalAlpha = textComponent.alpha;
 
