@@ -3,7 +3,7 @@ using UnityEngine;
 public class ShakeManager : MonoBehaviour
 {
     [Header("Shake Settings")]
-    [SerializeField] private float shakeThreshold = 1;
+    [SerializeField] private float shakeThreshold = 2;
     [SerializeField] private float shakeForce = 500f;
     [SerializeField] private float torqueForce = 100;
 
