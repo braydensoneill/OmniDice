@@ -2996,7 +2996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78079f01f55fc3245a27191c8ee2b4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeThreshold: 2
+  shakeThreshold: 1.5
   shakeForce: 500
   torqueForce: 100
   showDebugInfo: 1

@@ -34,47 +34,25 @@ public class SkinManager : MonoBehaviour
             currentSelectedSkin = PlayerPrefs.GetString("SelectedSkin", freeSkinName);
 
             // Ensure the current skin is owned, if not, reset to free skin
-            if (!IsOwned(currentSelectedSkin))
-            {
-                currentSelectedSkin = freeSkinName;
-                PlayerPrefs.SetString("SelectedSkin", freeSkinName);
-            }
+            // if (!IsOwned(currentSelectedSkin))
+            // {
+            //     currentSelectedSkin = freeSkinName;
+            //     PlayerPrefs.SetString("SelectedSkin", freeSkinName);
+            // }
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
     void Start()
     {
         LoadAvailableSkins();
-
-        // For development: Clear saved data and unlock all skins
-        ClearSkinDataAndUnlockAll(); // TEMPORARY - REMOVE FOR PRODUCTION
 
         // Subscribe to real IAP events
         RealIAPManager.OnPurchaseSuccessEvent += OnSkinPurchased;
         RealIAPManager.OnPurchaseFailedEvent += OnPurchaseFailedHandler;
     }
-
-    private void ClearSkinDataAndUnlockAll()
-    {
-        // Clear existing PlayerPrefs data for development
-        PlayerPrefs.DeleteKey("OwnedSkins");
-        PlayerPrefs.Save();
-
-        // Clear the owned skins list and reload
-        ownedSkins.Clear();
-
-        // Unlock all skins
-        foreach (var skin in availableSkins)
-        {
-            UnlockSkin(skin.skinName);
-        }
-        Debug.Log("[Development] Cleared saved data and unlocked all skins for testing");
-    }
-
     void OnDestroy()
     {
         // Unsubscribe from IAP events
@@ -103,11 +81,11 @@ public class SkinManager : MonoBehaviour
 
     public void PurchaseSkin(string skinName)
     {
-        if (IsOwned(skinName))
-        {
-            Debug.Log($"Skin '{skinName}' is already owned");
-            return;
-        }
+        // if (IsOwned(skinName))
+        // {
+        //     Debug.Log($"Skin '{skinName}' is already owned");
+        //     return;
+        // }
 
         Debug.Log($"[SkinManager] Starting real purchase for: {skinName}");
 
@@ -227,11 +205,11 @@ public class SkinManager : MonoBehaviour
         if (skin != null)
         {
             // Check if the skin is owned before allowing selection
-            if (!IsOwned(skinName))
-            {
-                Debug.LogWarning($"Cannot set skin '{skinName}' - not owned by player");
-                return;
-            }
+            // if (!IsOwned(skinName))
+            // {
+            //     Debug.LogWarning($"Cannot set skin '{skinName}' - not owned by player");
+            //     return;
+            // }
 
             currentSelectedSkin = skinName;
 
@@ -280,7 +258,9 @@ public class SkinManager : MonoBehaviour
 
     public bool IsOwned(string skinName)
     {
-        return ownedSkins.Contains(skinName);
+        // Always return true to disable skin locking
+        return true;
+        // return ownedSkins.Contains(skinName);
     }
 
     public void UnlockSkin(string skinName)
