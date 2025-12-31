@@ -4,21 +4,38 @@ public class ShakeManager : MonoBehaviour
 {
     [Header("Shake Settings")]
     [SerializeField] private float shakeThreshold = 2;
-    [SerializeField] private float shakeForce = 500f;
-    [SerializeField] private float torqueForce = 100;
+    [SerializeField] private float rotationThreshold = 8; // Higher threshold for rotation
+    [SerializeField] private float shakeForce = 200f;
+    [SerializeField] private float torqueForce = 50f;
+    [SerializeField] private float maxIntensityMultiplier = 2f; // Cap the intensity multiplier
 
     [Header("Debug")]
     public bool showDebugInfo = true;
     public float currentShakeIntensity;
+    public float currentRotationIntensity;
 
     private DiceManager[] dice;
     private Vector3 lastAcceleration;
+    private Vector3 lastGyroInput;
 
     void Start()
     {
         // Find all dice in the scene
         RefreshDiceList();
         lastAcceleration = Input.acceleration;
+
+        // Enable gyroscope for rotation detection
+        if (SystemInfo.supportsGyroscope)
+        {
+            Input.gyro.enabled = true;
+            lastGyroInput = Input.gyro.rotationRateUnbiased;
+            if (showDebugInfo)
+                Debug.Log("Gyroscope enabled for rotation detection");
+        }
+        else if (showDebugInfo)
+        {
+            Debug.LogWarning("Gyroscope not supported on this device");
+        }
     }
 
     void Update()
@@ -32,12 +49,36 @@ public class ShakeManager : MonoBehaviour
         float shakeIntensity = (currentAccel - lastAcceleration).magnitude;
         currentShakeIntensity = shakeIntensity; // Store for debugging
 
-        if (shakeIntensity > shakeThreshold)
-        {
-            PushDiceToTarget(shakeIntensity);
-        }
-        // No need to stop anything - dice will naturally settle when no forces applied
+        // Check for linear shake
+        bool isShaking = shakeIntensity > shakeThreshold;
 
+        // Check for rotation if gyroscope is available
+        bool isRotating = false;
+        float rotationIntensity = 0f;
+
+        if (SystemInfo.supportsGyroscope && Input.gyro.enabled)
+        {
+            Vector3 currentGyro = Input.gyro.rotationRateUnbiased;
+            rotationIntensity = (currentGyro - lastGyroInput).magnitude;
+            currentRotationIntensity = rotationIntensity;
+
+            isRotating = rotationIntensity > rotationThreshold;
+            lastGyroInput = currentGyro;
+        }
+
+        // Trigger dice movement if either shaking or rotating
+        if (isShaking || isRotating)
+        {
+            // Use the higher intensity for force calculation, but clamp it
+            float combinedIntensity = Mathf.Max(shakeIntensity, rotationIntensity * 0.3f); // Reduce rotation impact
+            combinedIntensity = Mathf.Clamp(combinedIntensity, 0f, maxIntensityMultiplier); // Cap the multiplier
+            PushDiceToTarget(combinedIntensity);
+
+            if (showDebugInfo && isRotating)
+            {
+                Debug.Log($"Phone rotation detected! Intensity: {rotationIntensity:F2} (reduced to {rotationIntensity * 0.3f:F2})");
+            }
+        }
         lastAcceleration = currentAccel;
     }
 
