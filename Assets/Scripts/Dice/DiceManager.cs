@@ -9,7 +9,6 @@ public class DiceManager : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip collisionSound;
 
-    // Cache velocity thresholds to avoid repeated calculations
     private const float VELOCITY_THRESHOLD_SQR = 0.0025f;
     private const float ANGULAR_VELOCITY_THRESHOLD_SQR = 0.0025f;
 
@@ -25,9 +24,13 @@ public class DiceManager : MonoBehaviour
         isRolling = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // Use cached thresholds and sqrMagnitude for better performance
+        CheckRollingState();
+    }
+
+    private void CheckRollingState()
+    {
         if (isRolling && rb.linearVelocity.sqrMagnitude < VELOCITY_THRESHOLD_SQR &&
             rb.angularVelocity.sqrMagnitude < ANGULAR_VELOCITY_THRESHOLD_SQR)
         {
@@ -37,7 +40,6 @@ public class DiceManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Only play sound if we have both components and aren't already playing
         if (collisionSound != null && audioSource != null && !audioSource.isPlaying)
         {
             audioSource.PlayOneShot(collisionSound);
