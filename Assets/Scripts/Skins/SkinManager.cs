@@ -49,10 +49,44 @@ public class SkinManager : MonoBehaviour
     void Start()
     {
         LoadAvailableSkins();
+        
+        // For testing: Randomly unlock half the skins
+        UnlockRandomSkinsForTesting();
 
         // Subscribe to real IAP events
         RealIAPManager.OnPurchaseSuccessEvent += OnSkinPurchased;
         RealIAPManager.OnPurchaseFailedEvent += OnPurchaseFailedHandler;
+    }
+    
+    private void UnlockRandomSkinsForTesting()
+    {
+        if (availableSkins.Count == 0) return;
+        
+        // Create a list of all skin names except the free one
+        List<string> allSkins = new List<string>();
+        foreach (var skin in availableSkins)
+        {
+            if (skin.skinName != freeSkinName)
+            {
+                allSkins.Add(skin.skinName);
+            }
+        }
+        
+        // Randomly unlock half of them
+        int skinsToUnlock = Mathf.Max(1, allSkins.Count / 2);
+        
+        for (int i = 0; i < skinsToUnlock && allSkins.Count > 0; i++)
+        {
+            int randomIndex = Random.Range(0, allSkins.Count);
+            string skinToUnlock = allSkins[randomIndex];
+            
+            UnlockSkin(skinToUnlock);
+            allSkins.RemoveAt(randomIndex); // Remove so we don't unlock the same one twice
+            
+            Debug.Log($"[Testing] Randomly unlocked skin: {skinToUnlock}");
+        }
+        
+        Debug.Log($"[Testing] Unlocked {skinsToUnlock} random skins for testing");
     }
 
     void OnDestroy()
